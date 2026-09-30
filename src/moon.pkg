@@ -1,5 +1,5 @@
 import {
-  "moonbitlang/core/json",
+  "CodeAIKai/agent_tape/core",
 }
 
 pkgtype(kind: "executable")

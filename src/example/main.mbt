@@ -1,0 +1,76 @@
+///|
+/// A MoonBit consumer uses the same public core API as the hosts.
+fn main {
+  let tape =
+    #|{
+    #|  "version": 1,
+    #|  "policy": {
+    #|    "allowed_tools": [
+    #|      "search",
+    #|      "draft",
+    #|      "send"
+    #|    ],
+    #|    "side_effect_tools": [
+    #|      "send"
+    #|    ],
+    #|    "max_total_cost": 10,
+    #|    "max_calls": 10
+    #|  },
+    #|  "fixtures": [
+    #|    {
+    #|      "tool": "search",
+    #|      "args_key": "topic=demo",
+    #|      "result": "found"
+    #|    },
+    #|    {
+    #|      "tool": "draft",
+    #|      "args_key": "text=demo",
+    #|      "result": "draft-ready"
+    #|    },
+    #|    {
+    #|      "tool": "send",
+    #|      "args_key": "recipient=demo",
+    #|      "result": "sent"
+    #|    }
+    #|  ],
+    #|  "events": [
+    #|    {
+    #|      "id": "search1",
+    #|      "kind": "call",
+    #|      "tool": "search",
+    #|      "args_key": "topic=demo",
+    #|      "result": "found",
+    #|      "cost": 2,
+    #|      "target": ""
+    #|    },
+    #|    {
+    #|      "id": "draft1",
+    #|      "kind": "call",
+    #|      "tool": "draft",
+    #|      "args_key": "text=demo",
+    #|      "result": "draft-ready",
+    #|      "cost": 1,
+    #|      "target": ""
+    #|    },
+    #|    {
+    #|      "id": "approval1",
+    #|      "kind": "approve",
+    #|      "tool": "send",
+    #|      "args_key": "recipient=demo",
+    #|      "result": "",
+    #|      "cost": 0,
+    #|      "target": "send1"
+    #|    },
+    #|    {
+    #|      "id": "send1",
+    #|      "kind": "call",
+    #|      "tool": "send",
+    #|      "args_key": "recipient=demo",
+    #|      "result": "sent",
+    #|      "cost": 3,
+    #|      "target": ""
+    #|    }
+    #|  ]
+    #|}
+  println(@core.evaluate_json(tape))
+}

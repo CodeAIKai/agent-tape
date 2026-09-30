@@ -86,6 +86,16 @@ node scripts/benchmark.mjs
 
 性能脚本对同一合成磁带重复回放 1,000 次，输出本机耗时与缩减结果；它是单机微基准，不能据此推断相对其他框架的性能。
 
+## MoonBit 包接入
+
+`src/core` 是独立于浏览器和 Node 的 MoonBit 包，公开 `evaluate_json`、`minimize_json` 和 `minimize_target_json` 三个字符串接口。`src/main.mbt` 仅保留 JS 导出绑定。仓库中的原生调用示例可以直接运行：
+
+```bash
+moon run src/example --target js
+```
+
+示例通过 `CodeAIKai/agent_tape/core` 导入内核并检查一份授权完整的磁带。该模块尚未发布到 Mooncakes；源代码与本地导入示例均随仓库提供。
+
 ## 批量回归检查
 
 `npm run check` 一次核对三份示例的预期结果，包含应当发现违规的负向用例。自定义清单使用 `fixtures/regression-suite.json` 的格式：每项指定相对文件名、预期通过状态和违规代码集合。
@@ -96,8 +106,8 @@ node scripts/benchmark.mjs
 
 | 路径 | 内容 |
 | --- | --- |
-| `src/main.mbt` | 类型与 schema 校验、策略检查、fixture 回放、失败缩减 |
-| `src/main_wbtest.mbt` | MoonBit 核心行为测试 |
+| `src/core/tape.mbt` | 可导入的 MoonBit 核心包：校验、规则、回放、缩减 |
+| `src/core/tape_wbtest.mbt` | MoonBit 核心行为测试 |
 | `web/agent_tape.js` | 从 MoonBit 生成的 ES module |
 | `web/app.js`、`web/index.html` | 浏览器交互与展示 |
 | `scripts/replay.mjs`、`tests/host.mjs` | 命令行入口与宿主集成测试 |
