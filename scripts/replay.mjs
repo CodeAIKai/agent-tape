@@ -1,4 +1,40 @@
-import {readFileSync} from 'node:fs';
-import {evaluate_json,minimize_json} from '../web/agent_tape.js';
-const path=process.argv[2];if(!path){console.error('Usage: node scripts/replay.mjs tape.json [--minimize]');process.exit(2)}
-try{const raw=readFileSync(path,'utf8');const result=JSON.parse(process.argv.includes('--minimize')?minimize_json(raw):evaluate_json(raw));console.log(JSON.stringify(result,null,2));process.exitCode=result.error||result.ok===false?1:0}catch{console.error('Cannot read or evaluate tape');process.exitCode=2}
+import {readFileSync, writeFileSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {evaluate_json, minimize_json} from '../web/agent_tape.js';
+
+const usage = 'Usage: node scripts/replay.mjs <tape.json|-> [--minimize] [--output report.json]';
+function parse(args) {
+  const options = {path: null, minimize: false, output: null};
+  for (let i=0; i<args.length; i++) {
+    const arg=args[i];
+    if (arg==='--help' || arg==='-h') return {help:true};
+    if (arg==='--minimize' && !options.minimize) options.minimize=true;
+    else if (arg==='--output' && !options.output) {
+      const value=args[++i];
+      if (!value || value.startsWith('--') || value==='-') throw Error('--output requires a file path');
+      options.output=value;
+    } else if ((!arg.startsWith('-') || arg==='-') && !options.path) options.path=arg;
+    else throw Error('Unknown or duplicate argument: '+arg);
+  }
+  if (!options.path) throw Error('A tape file or - for standard input is required');
+  if (options.path!=='-' && options.output && resolve(options.path)===resolve(options.output)) {
+    throw Error('The report output must not overwrite the input tape');
+  }
+  return options;
+}
+try {
+  const options=parse(process.argv.slice(2));
+  if (options.help) console.log(usage);
+  else {
+    const raw=readFileSync(options.path==='-' ? 0 : options.path,'utf8').replace(/^\uFEFF/,'');
+    const result=JSON.parse(options.minimize ? minimize_json(raw) : evaluate_json(raw));
+    const text=JSON.stringify(result,null,2)+'\n';
+    if (options.output) writeFileSync(options.output,text,{flag:'wx'});
+    process.stdout.write(text);
+    process.exitCode=result.error || result.ok===false ? 1 : 0;
+  }
+} catch (error) {
+  console.error(error.code==='EEXIST' ? 'Output already exists; choose a new report path.' : error.message);
+  console.error(usage);
+  process.exitCode=2;
+}

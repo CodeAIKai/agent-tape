@@ -56,6 +56,15 @@ python3 -m http.server 8013 --bind 127.0.0.1 --directory web
 
 CLI 检查通过或成功完成缩减时退出码为 `0`；检查发现违规或内核拒绝输入时为 `1`；缺少文件参数或文件读取失败时为 `2`。例如 `node scripts/replay.mjs fixtures/drift.json` 的预期退出码是 `1`，可用于回归检查。
 
+读取标准输入、保存报告：
+
+```bash
+node scripts/replay.mjs - --minimize < fixtures/missing-approval.json
+node scripts/replay.mjs fixtures/approved.json --output report.json
+```
+
+`--output` 只创建新文件，防止覆盖磁带或已有报告；参数错误返回退出码 `2`。`--help` 显示命令格式。
+
 ## 从 MoonBit 源码构建
 
 按 [MoonBit 官方文档](https://docs.moonbitlang.com/en/latest/)安装工具链，然后运行：
