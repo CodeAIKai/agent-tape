@@ -10,6 +10,7 @@
 
 | 材料 | 链接 |
 | --- | --- |
+| 项目申报书 | [一页 Markdown 正文](submission/project-application.md) |
 | 一页项目说明 | [PDF](submission/project-summary.pdf) · [正文](submission/project-summary.md) |
 | 技术与验收说明 | [PDF](submission/technical-report.pdf) · [正文](submission/technical-report.md) |
 | 路演演示文稿 | [PDF](submission/pitch-deck.pdf) · [PPTX](submission/pitch-deck.pptx) |
