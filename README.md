@@ -114,6 +114,10 @@ moon run src/example --target js
 | `fixtures/` | 三份可直接运行的合成磁带 |
 | `submission/` | 项目说明、技术说明、路演文件和配音视频 |
 
+## 磁带格式
+
+[JSON Schema](schema/tape.schema.json) 可用于编辑器补全与结构校验；[格式说明](docs/tape-format.md) 列出字段、上限和运行时校验边界。跨事件授权、重复标识、预算等语义仍由 MoonBit 内核判断。
+
 ## 适用范围
 
 输入协议版本为 `1`，上限为 300 个事件、300 个 fixture 和 200,000 字符；缩减最多接受 60 个事件。记录成本使用非负整数，参数键使用精确字符串匹配，由调用方负责规范化。

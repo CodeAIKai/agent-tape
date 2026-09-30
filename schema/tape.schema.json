@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/CodeAIKai/agent-tape/main/schema/tape.schema.json",
+  "title": "AgentTape version 1 tape",
+  "description": "Structural validation for local tapes. Cross-event identity and policy rules are checked by the MoonBit kernel.",
+  "type": "object",
+  "required": [
+    "version",
+    "policy",
+    "fixtures",
+    "events"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "policy": {
+      "$ref": "#/$defs/policy"
+    },
+    "fixtures": {
+      "type": "array",
+      "maxItems": 300,
+      "items": {
+        "$ref": "#/$defs/fixture"
+      }
+    },
+    "events": {
+      "type": "array",
+      "maxItems": 300,
+      "items": {
+        "$ref": "#/$defs/event"
+      }
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "toolName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "toolNames": {
+      "type": "array",
+      "maxItems": 300,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/toolName"
+      }
+    },
+    "policy": {
+      "type": "object",
+      "required": [
+        "allowed_tools",
+        "side_effect_tools",
+        "max_total_cost",
+        "max_calls"
+      ],
+      "properties": {
+        "allowed_tools": {
+          "$ref": "#/$defs/toolNames"
+        },
+        "side_effect_tools": {
+          "$ref": "#/$defs/toolNames"
+        },
+        "max_total_cost": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "max_calls": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 300
+        }
+      },
+      "additionalProperties": true
+    },
+    "fixture": {
+      "type": "object",
+      "required": [
+        "tool",
+        "args_key",
+        "result"
+      ],
+      "properties": {
+        "tool": {
+          "$ref": "#/$defs/toolName"
+        },
+        "args_key": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "result": {
+          "type": "string",
+          "maxLength": 8000
+        }
+      },
+      "additionalProperties": true
+    },
+    "event": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "tool",
+        "args_key",
+        "result",
+        "cost",
+        "target"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "kind": {
+          "enum": [
+            "call",
+            "approve"
+          ]
+        },
+        "tool": {
+          "$ref": "#/$defs/toolName"
+        },
+        "args_key": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "result": {
+          "type": "string",
+          "maxLength": 8000
+        },
+        "cost": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "target": {
+          "type": "string",
+          "maxLength": 120
+        }
+      },
+      "additionalProperties": true,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "approve"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "minLength": 1
+              },
+              "cost": {
+                "const": 0
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "target": {
+                "const": ""
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
