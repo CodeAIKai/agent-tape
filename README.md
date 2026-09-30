@@ -39,7 +39,7 @@ node scripts/replay.mjs fixtures/missing-approval.json --minimize
 python3 -m http.server 8013 --bind 127.0.0.1 --directory web
 ```
 
-打开 **http://127.0.0.1:8013**，依次点击“缺少授权”“缩减失败片段”“授权完整”和“结果漂移”，即可复现视频中的流程。“导出报告”下载当前检查或缩减结果。
+打开 **http://127.0.0.1:8013**，依次点击“缺少授权”“缩减失败片段”“授权完整”和“结果漂移”，即可复现视频中的流程。“导出报告”下载当前检查或缩减结果。“导入磁带文件”支持本地 JSON 文件，文件内容只在当前浏览器读取。编辑输入后，旧报告会失效，避免导出与输入不一致的结果。
 
 ## 核心能力
 
@@ -103,3 +103,7 @@ AgentTape 检查历史轨迹，不验证授权签名、不强制线上权限、�
 ## 许可与来源
 
 原创实现采用 [Apache-2.0](LICENSE)。[参考资料](docs/参考资料.md)、[开发与材料来源](PROVENANCE.md)及[第三方说明](THIRD_PARTY.md)记录实现依据与工具使用。编译产物包含的 MoonBit core 代码，其完整许可证和 NOTICE 保存在 `third_party/`。
+
+## 浏览器交互验证
+
+安装 `requirements-browser.txt` 和 Playwright Chromium 后，运行 `python3 tests/browser.py`，验证本地导入、报告下载、无效输入、文件上限和移动布局。
