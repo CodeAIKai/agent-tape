@@ -506,13 +506,15 @@ function _M0TP29CodeAIKai11agent__tape10ReplayStep(param0, param1, param2, param
   this.result = param3;
   this.source = param4;
 }
-function _M0TP29CodeAIKai11agent__tape7Reduced(param0, param1, param2, param3, param4, param5) {
+function _M0TP29CodeAIKai11agent__tape7Reduced(param0, param1, param2, param3, param4, param5, param6, param7) {
   this.target_code = param0;
-  this.before = param1;
-  this.after = param2;
-  this.guarantee = param3;
-  this.tape = param4;
-  this.report = param5;
+  this.target_event_id = param1;
+  this.removed_event_ids = param2;
+  this.before = param3;
+  this.after = param4;
+  this.guarantee = param5;
+  this.tape = param6;
+  this.report = param7;
 }
 const _M0FP092moonbitlang_2fcore_2fbuiltin_2fStringBuilder_24as_24_40moonbitlang_2fcore_2fbuiltin_2eLogger = { method_0: _M0IPB13StringBuilderPB6Logger13write__string, method_1: _M0IP016_24default__implPB6Logger16write__substringGRPB13StringBuilderE, method_2: _M0IPB13StringBuilderPB6Logger11write__view, method_3: _M0IPB13StringBuilderPB6Logger11write__char, method_4: _M0IP016_24default__implPB6Logger28write__string__interpolationGRPB13StringBuilderE, method_5: _M0IP016_24default__implPB6Logger5writeGRPB13StringBuilderE };
 const _M0FPB4null = _M0DTPB4Json4Null__;
@@ -1004,7 +1006,7 @@ function _M0MPC16string6String6repeat(self, n) {
     }
   }
 }
-function _M0MPC15array5Array4pushGRPC14json10WriteFrameE(self, value) {
+function _M0MPC15array5Array4pushGsE(self, value) {
   _M0MPB7JSArray4push(self, value);
 }
 function _M0FPB36string__contains__code__unit__scalar(str, start, end, code) {
@@ -1405,6 +1407,23 @@ function _M0IPC15array5ArrayPB6ToJson8to__jsonGRP29CodeAIKai11agent__tape10Repla
   }
   return new _M0DTPB4Json5Array(_p);
 }
+function _M0IPC15array5ArrayPB6ToJson8to__jsonGsE(self) {
+  const _p = new Array(self.length);
+  const _p$2 = self.length;
+  let _tmp = 0;
+  while (true) {
+    const _p$3 = _tmp;
+    if (_p$3 < _p$2) {
+      const _p$4 = self[_p$3];
+      _p[_p$3] = new _M0DTPB4Json6String(_p$4);
+      _tmp = _p$3 + 1 | 0;
+      continue;
+    } else {
+      break;
+    }
+  }
+  return new _M0DTPB4Json5Array(_p);
+}
 function _M0IPC15array5ArrayPB6ToJson8to__jsonGRP29CodeAIKai11agent__tape7FixtureE(self) {
   const _p = new Array(self.length);
   const _p$2 = self.length;
@@ -1431,23 +1450,6 @@ function _M0IPC15array5ArrayPB6ToJson8to__jsonGRP29CodeAIKai11agent__tape5EventE
     if (_p$3 < _p$2) {
       const _p$4 = self[_p$3];
       _p[_p$3] = _M0IP29CodeAIKai11agent__tape5EventPB6ToJson8to__json(_p$4);
-      _tmp = _p$3 + 1 | 0;
-      continue;
-    } else {
-      break;
-    }
-  }
-  return new _M0DTPB4Json5Array(_p);
-}
-function _M0IPC15array5ArrayPB6ToJson8to__jsonGsE(self) {
-  const _p = new Array(self.length);
-  const _p$2 = self.length;
-  let _tmp = 0;
-  while (true) {
-    const _p$3 = _tmp;
-    if (_p$3 < _p$2) {
-      const _p$4 = self[_p$3];
-      _p[_p$3] = new _M0DTPB4Json6String(_p$4);
       _tmp = _p$3 + 1 | 0;
       continue;
     } else {
@@ -4302,7 +4304,7 @@ function _M0MPC14json12ParseContext12parse__array(ctx, remaining_available_depth
       } else {
         return _bind$2;
       }
-      _M0MPC15array5Array4pushGRPC14json10WriteFrameE(vec, _tmp$4);
+      _M0MPC15array5Array4pushGsE(vec, _tmp$4);
       const _bind$3 = _M0MPC14json12ParseContext24lex__after__array__value(ctx);
       let tok2;
       if (_bind$3.$tag === 1) {
@@ -4544,9 +4546,9 @@ function _M0FPC14json13write__indent(buf, cache, level, indent) {
     if (cache.length <= level) {
       if (cache.length >= 1) {
         const _last = cache[cache.length - 1 | 0];
-        _M0MPC15array5Array4pushGRPC14json10WriteFrameE(cache, `${_last}${_M0MPC16string6String6repeat(" ", indent)}`);
+        _M0MPC15array5Array4pushGsE(cache, `${_last}${_M0MPC16string6String6repeat(" ", indent)}`);
       } else {
-        _M0MPC15array5Array4pushGRPC14json10WriteFrameE(cache, "\n");
+        _M0MPC15array5Array4pushGsE(cache, "\n");
       }
       continue;
     } else {
@@ -4662,7 +4664,7 @@ function _M0MPC14json4Json17stringify_2einner(self, escape_slash, indent, replac
             if (indent > 0) {
               _M0FPC14json13write__indent(buf, indent_cache, depth, indent);
             }
-            _M0MPC15array5Array4pushGRPC14json10WriteFrameE(stack, new _M0DTPC14json10WriteFrame6Object(_M0MPB3Map4iterGsRPB4JsonE(_members), true));
+            _M0MPC15array5Array4pushGsE(stack, new _M0DTPC14json10WriteFrame6Object(_M0MPB3Map4iterGsRPB4JsonE(_members), true));
           }
           break;
         }
@@ -4677,7 +4679,7 @@ function _M0MPC14json4Json17stringify_2einner(self, escape_slash, indent, replac
             if (indent > 0) {
               _M0FPC14json13write__indent(buf, indent_cache, depth, indent);
             }
-            _M0MPC15array5Array4pushGRPC14json10WriteFrameE(stack, new _M0DTPC14json10WriteFrame5Array(_arr, 0));
+            _M0MPC15array5Array4pushGsE(stack, new _M0DTPC14json10WriteFrame5Array(_arr, 0));
           }
           break;
         }
@@ -4795,7 +4797,7 @@ function _M0IPC15array5ArrayPC14json8FromJson10from__jsonGRP29CodeAIKai11agent__
           } else {
             return _bind$3;
           }
-          _M0MPC15array5Array4pushGRPC14json10WriteFrameE(_acc, _tmp$3);
+          _M0MPC15array5Array4pushGsE(_acc, _tmp$3);
           _tmp$2 = i + 1 | 0;
           continue;
         } else {
@@ -4835,7 +4837,7 @@ function _M0IPC15array5ArrayPC14json8FromJson10from__jsonGRP29CodeAIKai11agent__
           } else {
             return _bind$3;
           }
-          _M0MPC15array5Array4pushGRPC14json10WriteFrameE(_acc, _tmp$3);
+          _M0MPC15array5Array4pushGsE(_acc, _tmp$3);
           _tmp$2 = i + 1 | 0;
           continue;
         } else {
@@ -4875,7 +4877,7 @@ function _M0IPC15array5ArrayPC14json8FromJson10from__jsonGsE(json, path) {
           } else {
             return _bind$3;
           }
-          _M0MPC15array5Array4pushGRPC14json10WriteFrameE(_acc, _tmp$3);
+          _M0MPC15array5Array4pushGsE(_acc, _tmp$3);
           _tmp$2 = i + 1 | 0;
           continue;
         } else {
@@ -4891,34 +4893,34 @@ function _M0IPC15array5ArrayPC14json8FromJson10from__jsonGsE(json, path) {
     return _M0FPC14json13decode__errorGRPB5ArrayGRP29CodeAIKai11agent__tape7FixtureEE(path, "Array::from_json: expected array");
   }
 }
-function _M0IP29CodeAIKai11agent__tape5EventPB6ToJson8to__json(_x_186) {
+function _M0IP29CodeAIKai11agent__tape5EventPB6ToJson8to__json(_x_195) {
   const _bind = [];
   const $36$map = _M0MPB3Map3MapGsRPB4JsonE(new _M0TPB9ArrayViewGUsRPB4JsonEE(_bind, 0, 0), undefined);
-  const _p = _x_186.id;
+  const _p = _x_195.id;
   _M0MPB3Map3setGsRPB4JsonE($36$map, "id", new _M0DTPB4Json6String(_p));
-  const _p$2 = _x_186.kind;
+  const _p$2 = _x_195.kind;
   _M0MPB3Map3setGsRPB4JsonE($36$map, "kind", new _M0DTPB4Json6String(_p$2));
-  const _p$3 = _x_186.tool;
+  const _p$3 = _x_195.tool;
   _M0MPB3Map3setGsRPB4JsonE($36$map, "tool", new _M0DTPB4Json6String(_p$3));
-  const _p$4 = _x_186.args_key;
+  const _p$4 = _x_195.args_key;
   _M0MPB3Map3setGsRPB4JsonE($36$map, "args_key", new _M0DTPB4Json6String(_p$4));
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "cost", _M0IPC13int3IntPB6ToJson8to__json(_x_186.cost));
-  const _p$5 = _x_186.result;
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "cost", _M0IPC13int3IntPB6ToJson8to__json(_x_195.cost));
+  const _p$5 = _x_195.result;
   _M0MPB3Map3setGsRPB4JsonE($36$map, "result", new _M0DTPB4Json6String(_p$5));
-  const _p$6 = _x_186.target;
+  const _p$6 = _x_195.target;
   _M0MPB3Map3setGsRPB4JsonE($36$map, "target", new _M0DTPB4Json6String(_p$6));
   return new _M0DTPB4Json6Object($36$map);
 }
-function _M0IP29CodeAIKai11agent__tape5EventPC14json8FromJson10from__json(_x_146, _x_147) {
-  let _de_tool_154 = undefined;
-  let _de_target_153 = undefined;
-  let _de_result_152 = undefined;
-  let _de_kind_151 = undefined;
-  let _de_id_150 = undefined;
-  let _de_cost_149 = undefined;
-  let _de_args_key_148 = undefined;
-  if (_x_146.$tag === 6) {
-    const _Object = _x_146;
+function _M0IP29CodeAIKai11agent__tape5EventPC14json8FromJson10from__json(_x_155, _x_156) {
+  let _de_tool_163 = undefined;
+  let _de_target_162 = undefined;
+  let _de_result_161 = undefined;
+  let _de_kind_160 = undefined;
+  let _de_id_159 = undefined;
+  let _de_cost_158 = undefined;
+  let _de_args_key_157 = undefined;
+  if (_x_155.$tag === 6) {
+    const _Object = _x_155;
     const __map = _Object._0;
     const _bind = _M0MPB3Map3getGsRPB4JsonE(__map, "id");
     if (_bind === undefined) {
@@ -4926,7 +4928,7 @@ function _M0IP29CodeAIKai11agent__tape5EventPC14json8FromJson10from__json(_x_146
       const _Some = _bind;
       const __v = _Some;
       const _p = "id";
-      const _bind$2 = _M0IPC16string6StringPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_147, _p));
+      const _bind$2 = _M0IPC16string6StringPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_156, _p));
       let _tmp;
       if (_bind$2.$tag === 1) {
         const _ok = _bind$2;
@@ -4934,7 +4936,7 @@ function _M0IP29CodeAIKai11agent__tape5EventPC14json8FromJson10from__json(_x_146
       } else {
         return _bind$2;
       }
-      _de_id_150 = _tmp;
+      _de_id_159 = _tmp;
     }
     const _bind$2 = _M0MPB3Map3getGsRPB4JsonE(__map, "kind");
     if (_bind$2 === undefined) {
@@ -4942,7 +4944,7 @@ function _M0IP29CodeAIKai11agent__tape5EventPC14json8FromJson10from__json(_x_146
       const _Some = _bind$2;
       const __v = _Some;
       const _p = "kind";
-      const _bind$3 = _M0IPC16string6StringPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_147, _p));
+      const _bind$3 = _M0IPC16string6StringPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_156, _p));
       let _tmp;
       if (_bind$3.$tag === 1) {
         const _ok = _bind$3;
@@ -4950,7 +4952,7 @@ function _M0IP29CodeAIKai11agent__tape5EventPC14json8FromJson10from__json(_x_146
       } else {
         return _bind$3;
       }
-      _de_kind_151 = _tmp;
+      _de_kind_160 = _tmp;
     }
     const _bind$3 = _M0MPB3Map3getGsRPB4JsonE(__map, "tool");
     if (_bind$3 === undefined) {
@@ -4958,7 +4960,7 @@ function _M0IP29CodeAIKai11agent__tape5EventPC14json8FromJson10from__json(_x_146
       const _Some = _bind$3;
       const __v = _Some;
       const _p = "tool";
-      const _bind$4 = _M0IPC16string6StringPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_147, _p));
+      const _bind$4 = _M0IPC16string6StringPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_156, _p));
       let _tmp;
       if (_bind$4.$tag === 1) {
         const _ok = _bind$4;
@@ -4966,7 +4968,7 @@ function _M0IP29CodeAIKai11agent__tape5EventPC14json8FromJson10from__json(_x_146
       } else {
         return _bind$4;
       }
-      _de_tool_154 = _tmp;
+      _de_tool_163 = _tmp;
     }
     const _bind$4 = _M0MPB3Map3getGsRPB4JsonE(__map, "args_key");
     if (_bind$4 === undefined) {
@@ -4974,7 +4976,7 @@ function _M0IP29CodeAIKai11agent__tape5EventPC14json8FromJson10from__json(_x_146
       const _Some = _bind$4;
       const __v = _Some;
       const _p = "args_key";
-      const _bind$5 = _M0IPC16string6StringPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_147, _p));
+      const _bind$5 = _M0IPC16string6StringPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_156, _p));
       let _tmp;
       if (_bind$5.$tag === 1) {
         const _ok = _bind$5;
@@ -4982,7 +4984,7 @@ function _M0IP29CodeAIKai11agent__tape5EventPC14json8FromJson10from__json(_x_146
       } else {
         return _bind$5;
       }
-      _de_args_key_148 = _tmp;
+      _de_args_key_157 = _tmp;
     }
     const _bind$5 = _M0MPB3Map3getGsRPB4JsonE(__map, "cost");
     if (_bind$5 === undefined) {
@@ -4990,7 +4992,7 @@ function _M0IP29CodeAIKai11agent__tape5EventPC14json8FromJson10from__json(_x_146
       const _Some = _bind$5;
       const __v = _Some;
       const _p = "cost";
-      const _bind$6 = _M0IPC13int3IntPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_147, _p));
+      const _bind$6 = _M0IPC13int3IntPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_156, _p));
       let _tmp;
       if (_bind$6.$tag === 1) {
         const _ok = _bind$6;
@@ -4998,7 +5000,7 @@ function _M0IP29CodeAIKai11agent__tape5EventPC14json8FromJson10from__json(_x_146
       } else {
         return _bind$6;
       }
-      _de_cost_149 = _tmp;
+      _de_cost_158 = _tmp;
     }
     const _bind$6 = _M0MPB3Map3getGsRPB4JsonE(__map, "result");
     if (_bind$6 === undefined) {
@@ -5006,7 +5008,7 @@ function _M0IP29CodeAIKai11agent__tape5EventPC14json8FromJson10from__json(_x_146
       const _Some = _bind$6;
       const __v = _Some;
       const _p = "result";
-      const _bind$7 = _M0IPC16string6StringPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_147, _p));
+      const _bind$7 = _M0IPC16string6StringPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_156, _p));
       let _tmp;
       if (_bind$7.$tag === 1) {
         const _ok = _bind$7;
@@ -5014,7 +5016,7 @@ function _M0IP29CodeAIKai11agent__tape5EventPC14json8FromJson10from__json(_x_146
       } else {
         return _bind$7;
       }
-      _de_result_152 = _tmp;
+      _de_result_161 = _tmp;
     }
     const _bind$7 = _M0MPB3Map3getGsRPB4JsonE(__map, "target");
     if (_bind$7 === undefined) {
@@ -5022,7 +5024,7 @@ function _M0IP29CodeAIKai11agent__tape5EventPC14json8FromJson10from__json(_x_146
       const _Some = _bind$7;
       const __v = _Some;
       const _p = "target";
-      const _bind$8 = _M0IPC16string6StringPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_147, _p));
+      const _bind$8 = _M0IPC16string6StringPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_156, _p));
       let _tmp;
       if (_bind$8.$tag === 1) {
         const _ok = _bind$8;
@@ -5030,100 +5032,100 @@ function _M0IP29CodeAIKai11agent__tape5EventPC14json8FromJson10from__json(_x_146
       } else {
         return _bind$8;
       }
-      _de_target_153 = _tmp;
+      _de_target_162 = _tmp;
     }
   } else {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape5EventRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_147, _1: "Expected object to deserialize Event" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape5EventRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_156, _1: "Expected object to deserialize Event" }));
   }
-  const _bind = _de_tool_154;
-  let _de_tool_154$2;
+  const _bind = _de_tool_163;
+  let _de_tool_163$2;
   if (_bind === undefined) {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape5EventRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_147, _1: "Missing field tool" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape5EventRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_156, _1: "Missing field tool" }));
   } else {
     const _Some = _bind;
-    _de_tool_154$2 = _Some;
+    _de_tool_163$2 = _Some;
   }
-  const _bind$2 = _de_target_153;
-  let _de_target_153$2;
+  const _bind$2 = _de_target_162;
+  let _de_target_162$2;
   if (_bind$2 === undefined) {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape5EventRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_147, _1: "Missing field target" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape5EventRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_156, _1: "Missing field target" }));
   } else {
     const _Some = _bind$2;
-    _de_target_153$2 = _Some;
+    _de_target_162$2 = _Some;
   }
-  const _bind$3 = _de_result_152;
-  let _de_result_152$2;
+  const _bind$3 = _de_result_161;
+  let _de_result_161$2;
   if (_bind$3 === undefined) {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape5EventRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_147, _1: "Missing field result" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape5EventRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_156, _1: "Missing field result" }));
   } else {
     const _Some = _bind$3;
-    _de_result_152$2 = _Some;
+    _de_result_161$2 = _Some;
   }
-  const _bind$4 = _de_kind_151;
-  let _de_kind_151$2;
+  const _bind$4 = _de_kind_160;
+  let _de_kind_160$2;
   if (_bind$4 === undefined) {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape5EventRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_147, _1: "Missing field kind" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape5EventRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_156, _1: "Missing field kind" }));
   } else {
     const _Some = _bind$4;
-    _de_kind_151$2 = _Some;
+    _de_kind_160$2 = _Some;
   }
-  const _bind$5 = _de_id_150;
-  let _de_id_150$2;
+  const _bind$5 = _de_id_159;
+  let _de_id_159$2;
   if (_bind$5 === undefined) {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape5EventRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_147, _1: "Missing field id" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape5EventRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_156, _1: "Missing field id" }));
   } else {
     const _Some = _bind$5;
-    _de_id_150$2 = _Some;
+    _de_id_159$2 = _Some;
   }
-  const _bind$6 = _de_cost_149;
-  let _de_cost_149$2;
+  const _bind$6 = _de_cost_158;
+  let _de_cost_158$2;
   if (_bind$6 === undefined) {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape5EventRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_147, _1: "Missing field cost" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape5EventRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_156, _1: "Missing field cost" }));
   } else {
     const _Some = _bind$6;
-    _de_cost_149$2 = _Some;
+    _de_cost_158$2 = _Some;
   }
-  const _bind$7 = _de_args_key_148;
-  let _de_args_key_148$2;
+  const _bind$7 = _de_args_key_157;
+  let _de_args_key_157$2;
   if (_bind$7 === undefined) {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape5EventRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_147, _1: "Missing field args_key" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape5EventRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_156, _1: "Missing field args_key" }));
   } else {
     const _Some = _bind$7;
-    _de_args_key_148$2 = _Some;
+    _de_args_key_157$2 = _Some;
   }
-  return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape5EventRPC14json15JsonDecodeErrorE2Ok(new _M0TP29CodeAIKai11agent__tape5Event(_de_id_150$2, _de_kind_151$2, _de_tool_154$2, _de_args_key_148$2, _de_cost_149$2, _de_result_152$2, _de_target_153$2));
+  return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape5EventRPC14json15JsonDecodeErrorE2Ok(new _M0TP29CodeAIKai11agent__tape5Event(_de_id_159$2, _de_kind_160$2, _de_tool_163$2, _de_args_key_157$2, _de_cost_158$2, _de_result_161$2, _de_target_162$2));
 }
-function _M0IP29CodeAIKai11agent__tape10ReplayStepPB6ToJson8to__json(_x_143) {
+function _M0IP29CodeAIKai11agent__tape10ReplayStepPB6ToJson8to__json(_x_152) {
   const _bind = [];
   const $36$map = _M0MPB3Map3MapGsRPB4JsonE(new _M0TPB9ArrayViewGUsRPB4JsonEE(_bind, 0, 0), undefined);
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "step", _M0IPC13int3IntPB6ToJson8to__json(_x_143.step));
-  const _p = _x_143.event_id;
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "step", _M0IPC13int3IntPB6ToJson8to__json(_x_152.step));
+  const _p = _x_152.event_id;
   _M0MPB3Map3setGsRPB4JsonE($36$map, "event_id", new _M0DTPB4Json6String(_p));
-  const _p$2 = _x_143.tool;
+  const _p$2 = _x_152.tool;
   _M0MPB3Map3setGsRPB4JsonE($36$map, "tool", new _M0DTPB4Json6String(_p$2));
-  const _p$3 = _x_143.result;
+  const _p$3 = _x_152.result;
   _M0MPB3Map3setGsRPB4JsonE($36$map, "result", new _M0DTPB4Json6String(_p$3));
-  const _p$4 = _x_143.source;
+  const _p$4 = _x_152.source;
   _M0MPB3Map3setGsRPB4JsonE($36$map, "source", new _M0DTPB4Json6String(_p$4));
   return new _M0DTPB4Json6Object($36$map);
 }
-function _M0IP29CodeAIKai11agent__tape7FixturePB6ToJson8to__json(_x_140) {
+function _M0IP29CodeAIKai11agent__tape7FixturePB6ToJson8to__json(_x_149) {
   const _bind = [];
   const $36$map = _M0MPB3Map3MapGsRPB4JsonE(new _M0TPB9ArrayViewGUsRPB4JsonEE(_bind, 0, 0), undefined);
-  const _p = _x_140.tool;
+  const _p = _x_149.tool;
   _M0MPB3Map3setGsRPB4JsonE($36$map, "tool", new _M0DTPB4Json6String(_p));
-  const _p$2 = _x_140.args_key;
+  const _p$2 = _x_149.args_key;
   _M0MPB3Map3setGsRPB4JsonE($36$map, "args_key", new _M0DTPB4Json6String(_p$2));
-  const _p$3 = _x_140.result;
+  const _p$3 = _x_149.result;
   _M0MPB3Map3setGsRPB4JsonE($36$map, "result", new _M0DTPB4Json6String(_p$3));
   return new _M0DTPB4Json6Object($36$map);
 }
-function _M0IP29CodeAIKai11agent__tape7FixturePC14json8FromJson10from__json(_x_120, _x_121) {
-  let _de_tool_124 = undefined;
-  let _de_result_123 = undefined;
-  let _de_args_key_122 = undefined;
-  if (_x_120.$tag === 6) {
-    const _Object = _x_120;
+function _M0IP29CodeAIKai11agent__tape7FixturePC14json8FromJson10from__json(_x_129, _x_130) {
+  let _de_tool_133 = undefined;
+  let _de_result_132 = undefined;
+  let _de_args_key_131 = undefined;
+  if (_x_129.$tag === 6) {
+    const _Object = _x_129;
     const __map = _Object._0;
     const _bind = _M0MPB3Map3getGsRPB4JsonE(__map, "tool");
     if (_bind === undefined) {
@@ -5131,7 +5133,7 @@ function _M0IP29CodeAIKai11agent__tape7FixturePC14json8FromJson10from__json(_x_1
       const _Some = _bind;
       const __v = _Some;
       const _p = "tool";
-      const _bind$2 = _M0IPC16string6StringPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_121, _p));
+      const _bind$2 = _M0IPC16string6StringPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_130, _p));
       let _tmp;
       if (_bind$2.$tag === 1) {
         const _ok = _bind$2;
@@ -5139,7 +5141,7 @@ function _M0IP29CodeAIKai11agent__tape7FixturePC14json8FromJson10from__json(_x_1
       } else {
         return _bind$2;
       }
-      _de_tool_124 = _tmp;
+      _de_tool_133 = _tmp;
     }
     const _bind$2 = _M0MPB3Map3getGsRPB4JsonE(__map, "args_key");
     if (_bind$2 === undefined) {
@@ -5147,7 +5149,7 @@ function _M0IP29CodeAIKai11agent__tape7FixturePC14json8FromJson10from__json(_x_1
       const _Some = _bind$2;
       const __v = _Some;
       const _p = "args_key";
-      const _bind$3 = _M0IPC16string6StringPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_121, _p));
+      const _bind$3 = _M0IPC16string6StringPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_130, _p));
       let _tmp;
       if (_bind$3.$tag === 1) {
         const _ok = _bind$3;
@@ -5155,7 +5157,7 @@ function _M0IP29CodeAIKai11agent__tape7FixturePC14json8FromJson10from__json(_x_1
       } else {
         return _bind$3;
       }
-      _de_args_key_122 = _tmp;
+      _de_args_key_131 = _tmp;
     }
     const _bind$3 = _M0MPB3Map3getGsRPB4JsonE(__map, "result");
     if (_bind$3 === undefined) {
@@ -5163,7 +5165,7 @@ function _M0IP29CodeAIKai11agent__tape7FixturePC14json8FromJson10from__json(_x_1
       const _Some = _bind$3;
       const __v = _Some;
       const _p = "result";
-      const _bind$4 = _M0IPC16string6StringPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_121, _p));
+      const _bind$4 = _M0IPC16string6StringPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_130, _p));
       let _tmp;
       if (_bind$4.$tag === 1) {
         const _ok = _bind$4;
@@ -5171,53 +5173,53 @@ function _M0IP29CodeAIKai11agent__tape7FixturePC14json8FromJson10from__json(_x_1
       } else {
         return _bind$4;
       }
-      _de_result_123 = _tmp;
+      _de_result_132 = _tmp;
     }
   } else {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape7FixtureRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_121, _1: "Expected object to deserialize Fixture" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape7FixtureRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_130, _1: "Expected object to deserialize Fixture" }));
   }
-  const _bind = _de_tool_124;
-  let _de_tool_124$2;
+  const _bind = _de_tool_133;
+  let _de_tool_133$2;
   if (_bind === undefined) {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape7FixtureRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_121, _1: "Missing field tool" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape7FixtureRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_130, _1: "Missing field tool" }));
   } else {
     const _Some = _bind;
-    _de_tool_124$2 = _Some;
+    _de_tool_133$2 = _Some;
   }
-  const _bind$2 = _de_result_123;
-  let _de_result_123$2;
+  const _bind$2 = _de_result_132;
+  let _de_result_132$2;
   if (_bind$2 === undefined) {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape7FixtureRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_121, _1: "Missing field result" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape7FixtureRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_130, _1: "Missing field result" }));
   } else {
     const _Some = _bind$2;
-    _de_result_123$2 = _Some;
+    _de_result_132$2 = _Some;
   }
-  const _bind$3 = _de_args_key_122;
-  let _de_args_key_122$2;
+  const _bind$3 = _de_args_key_131;
+  let _de_args_key_131$2;
   if (_bind$3 === undefined) {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape7FixtureRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_121, _1: "Missing field args_key" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape7FixtureRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_130, _1: "Missing field args_key" }));
   } else {
     const _Some = _bind$3;
-    _de_args_key_122$2 = _Some;
+    _de_args_key_131$2 = _Some;
   }
-  return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape7FixtureRPC14json15JsonDecodeErrorE2Ok(new _M0TP29CodeAIKai11agent__tape7Fixture(_de_tool_124$2, _de_args_key_122$2, _de_result_123$2));
+  return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape7FixtureRPC14json15JsonDecodeErrorE2Ok(new _M0TP29CodeAIKai11agent__tape7Fixture(_de_tool_133$2, _de_args_key_131$2, _de_result_132$2));
 }
-function _M0IP29CodeAIKai11agent__tape4TapePB6ToJson8to__json(_x_117) {
+function _M0IP29CodeAIKai11agent__tape4TapePB6ToJson8to__json(_x_126) {
   const _bind = [];
   const $36$map = _M0MPB3Map3MapGsRPB4JsonE(new _M0TPB9ArrayViewGUsRPB4JsonEE(_bind, 0, 0), undefined);
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "version", _M0IPC13int3IntPB6ToJson8to__json(_x_117.version));
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "policy", _M0IP29CodeAIKai11agent__tape6PolicyPB6ToJson8to__json(_x_117.policy));
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "fixtures", _M0IPC15array5ArrayPB6ToJson8to__jsonGRP29CodeAIKai11agent__tape7FixtureE(_x_117.fixtures));
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "events", _M0IPC15array5ArrayPB6ToJson8to__jsonGRP29CodeAIKai11agent__tape5EventE(_x_117.events));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "version", _M0IPC13int3IntPB6ToJson8to__json(_x_126.version));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "policy", _M0IP29CodeAIKai11agent__tape6PolicyPB6ToJson8to__json(_x_126.policy));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "fixtures", _M0IPC15array5ArrayPB6ToJson8to__jsonGRP29CodeAIKai11agent__tape7FixtureE(_x_126.fixtures));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "events", _M0IPC15array5ArrayPB6ToJson8to__jsonGRP29CodeAIKai11agent__tape5EventE(_x_126.events));
   return new _M0DTPB4Json6Object($36$map);
 }
-function _M0IP29CodeAIKai11agent__tape4TapePC14json8FromJson10from__json(_x_92, _x_93) {
-  let _de_version_97 = undefined;
-  let _de_policy_96 = undefined;
-  let _de_fixtures_95 = _M0DTPC16option6OptionGRPB5ArrayGRP29CodeAIKai11agent__tape7FixtureEE4None__;
-  let _de_events_94 = _M0DTPC16option6OptionGRPB5ArrayGRP29CodeAIKai11agent__tape5EventEE4None__;
-  if (_x_92.$tag === 6) {
-    const _Object = _x_92;
+function _M0IP29CodeAIKai11agent__tape4TapePC14json8FromJson10from__json(_x_101, _x_102) {
+  let _de_version_106 = undefined;
+  let _de_policy_105 = undefined;
+  let _de_fixtures_104 = _M0DTPC16option6OptionGRPB5ArrayGRP29CodeAIKai11agent__tape7FixtureEE4None__;
+  let _de_events_103 = _M0DTPC16option6OptionGRPB5ArrayGRP29CodeAIKai11agent__tape5EventEE4None__;
+  if (_x_101.$tag === 6) {
+    const _Object = _x_101;
     const __map = _Object._0;
     const _bind = _M0MPB3Map3getGsRPB4JsonE(__map, "version");
     if (_bind === undefined) {
@@ -5225,7 +5227,7 @@ function _M0IP29CodeAIKai11agent__tape4TapePC14json8FromJson10from__json(_x_92, 
       const _Some = _bind;
       const __v = _Some;
       const _p = "version";
-      const _bind$2 = _M0IPC13int3IntPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_93, _p));
+      const _bind$2 = _M0IPC13int3IntPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_102, _p));
       let _tmp;
       if (_bind$2.$tag === 1) {
         const _ok = _bind$2;
@@ -5233,7 +5235,7 @@ function _M0IP29CodeAIKai11agent__tape4TapePC14json8FromJson10from__json(_x_92, 
       } else {
         return _bind$2;
       }
-      _de_version_97 = _tmp;
+      _de_version_106 = _tmp;
     }
     const _bind$2 = _M0MPB3Map3getGsRPB4JsonE(__map, "policy");
     if (_bind$2 === undefined) {
@@ -5241,7 +5243,7 @@ function _M0IP29CodeAIKai11agent__tape4TapePC14json8FromJson10from__json(_x_92, 
       const _Some = _bind$2;
       const __v = _Some;
       const _p = "policy";
-      const _bind$3 = _M0IP29CodeAIKai11agent__tape6PolicyPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_93, _p));
+      const _bind$3 = _M0IP29CodeAIKai11agent__tape6PolicyPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_102, _p));
       let _tmp;
       if (_bind$3.$tag === 1) {
         const _ok = _bind$3;
@@ -5249,7 +5251,7 @@ function _M0IP29CodeAIKai11agent__tape4TapePC14json8FromJson10from__json(_x_92, 
       } else {
         return _bind$3;
       }
-      _de_policy_96 = _tmp;
+      _de_policy_105 = _tmp;
     }
     const _bind$3 = _M0MPB3Map3getGsRPB4JsonE(__map, "fixtures");
     if (_bind$3 === undefined) {
@@ -5257,7 +5259,7 @@ function _M0IP29CodeAIKai11agent__tape4TapePC14json8FromJson10from__json(_x_92, 
       const _Some = _bind$3;
       const __v = _Some;
       const _p = "fixtures";
-      const _bind$4 = _M0IPC15array5ArrayPC14json8FromJson10from__jsonGRP29CodeAIKai11agent__tape7FixtureE(__v, new _M0DTPC14json8JsonPath3Key(_x_93, _p));
+      const _bind$4 = _M0IPC15array5ArrayPC14json8FromJson10from__jsonGRP29CodeAIKai11agent__tape7FixtureE(__v, new _M0DTPC14json8JsonPath3Key(_x_102, _p));
       let _tmp;
       if (_bind$4.$tag === 1) {
         const _ok = _bind$4;
@@ -5265,7 +5267,7 @@ function _M0IP29CodeAIKai11agent__tape4TapePC14json8FromJson10from__json(_x_92, 
       } else {
         return _bind$4;
       }
-      _de_fixtures_95 = new _M0DTPC16option6OptionGRPB5ArrayGRP29CodeAIKai11agent__tape7FixtureEE4Some(_tmp);
+      _de_fixtures_104 = new _M0DTPC16option6OptionGRPB5ArrayGRP29CodeAIKai11agent__tape7FixtureEE4Some(_tmp);
     }
     const _bind$4 = _M0MPB3Map3getGsRPB4JsonE(__map, "events");
     if (_bind$4 === undefined) {
@@ -5273,7 +5275,7 @@ function _M0IP29CodeAIKai11agent__tape4TapePC14json8FromJson10from__json(_x_92, 
       const _Some = _bind$4;
       const __v = _Some;
       const _p = "events";
-      const _bind$5 = _M0IPC15array5ArrayPC14json8FromJson10from__jsonGRP29CodeAIKai11agent__tape5EventE(__v, new _M0DTPC14json8JsonPath3Key(_x_93, _p));
+      const _bind$5 = _M0IPC15array5ArrayPC14json8FromJson10from__jsonGRP29CodeAIKai11agent__tape5EventE(__v, new _M0DTPC14json8JsonPath3Key(_x_102, _p));
       let _tmp;
       if (_bind$5.$tag === 1) {
         const _ok = _bind$5;
@@ -5281,87 +5283,90 @@ function _M0IP29CodeAIKai11agent__tape4TapePC14json8FromJson10from__json(_x_92, 
       } else {
         return _bind$5;
       }
-      _de_events_94 = new _M0DTPC16option6OptionGRPB5ArrayGRP29CodeAIKai11agent__tape5EventEE4Some(_tmp);
+      _de_events_103 = new _M0DTPC16option6OptionGRPB5ArrayGRP29CodeAIKai11agent__tape5EventEE4Some(_tmp);
     }
   } else {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape4TapeRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_93, _1: "Expected object to deserialize Tape" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape4TapeRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_102, _1: "Expected object to deserialize Tape" }));
   }
-  const _bind = _de_version_97;
-  let _de_version_97$2;
+  const _bind = _de_version_106;
+  let _de_version_106$2;
   if (_bind === undefined) {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape4TapeRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_93, _1: "Missing field version" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape4TapeRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_102, _1: "Missing field version" }));
   } else {
     const _Some = _bind;
-    _de_version_97$2 = _Some;
+    _de_version_106$2 = _Some;
   }
-  const _bind$2 = _de_policy_96;
-  let _de_policy_96$2;
+  const _bind$2 = _de_policy_105;
+  let _de_policy_105$2;
   if (_bind$2 === undefined) {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape4TapeRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_93, _1: "Missing field policy" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape4TapeRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_102, _1: "Missing field policy" }));
   } else {
     const _Some = _bind$2;
-    _de_policy_96$2 = _Some;
+    _de_policy_105$2 = _Some;
   }
-  const _bind$3 = _de_fixtures_95;
-  let _de_fixtures_95$2;
+  const _bind$3 = _de_fixtures_104;
+  let _de_fixtures_104$2;
   if (_bind$3.$tag === 1) {
     const _Some = _bind$3;
-    _de_fixtures_95$2 = _Some._0;
+    _de_fixtures_104$2 = _Some._0;
   } else {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape4TapeRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_93, _1: "Missing field fixtures" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape4TapeRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_102, _1: "Missing field fixtures" }));
   }
-  const _bind$4 = _de_events_94;
-  let _de_events_94$2;
+  const _bind$4 = _de_events_103;
+  let _de_events_103$2;
   if (_bind$4.$tag === 1) {
     const _Some = _bind$4;
-    _de_events_94$2 = _Some._0;
+    _de_events_103$2 = _Some._0;
   } else {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape4TapeRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_93, _1: "Missing field events" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape4TapeRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_102, _1: "Missing field events" }));
   }
-  return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape4TapeRPC14json15JsonDecodeErrorE2Ok(new _M0TP29CodeAIKai11agent__tape4Tape(_de_version_97$2, _de_policy_96$2, _de_fixtures_95$2, _de_events_94$2));
+  return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape4TapeRPC14json15JsonDecodeErrorE2Ok(new _M0TP29CodeAIKai11agent__tape4Tape(_de_version_106$2, _de_policy_105$2, _de_fixtures_104$2, _de_events_103$2));
 }
-function _M0IP29CodeAIKai11agent__tape7ReducedPB6ToJson8to__json(_x_89) {
+function _M0IP29CodeAIKai11agent__tape7ReducedPB6ToJson8to__json(_x_98) {
   const _bind = [];
   const $36$map = _M0MPB3Map3MapGsRPB4JsonE(new _M0TPB9ArrayViewGUsRPB4JsonEE(_bind, 0, 0), undefined);
-  const _p = _x_89.target_code;
+  const _p = _x_98.target_code;
   _M0MPB3Map3setGsRPB4JsonE($36$map, "target_code", new _M0DTPB4Json6String(_p));
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "before", _M0IPC13int3IntPB6ToJson8to__json(_x_89.before));
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "after", _M0IPC13int3IntPB6ToJson8to__json(_x_89.after));
-  const _p$2 = _x_89.guarantee;
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "guarantee", new _M0DTPB4Json6String(_p$2));
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "tape", _M0IP29CodeAIKai11agent__tape4TapePB6ToJson8to__json(_x_89.tape));
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "report", _M0IP29CodeAIKai11agent__tape6ReportPB6ToJson8to__json(_x_89.report));
+  const _p$2 = _x_98.target_event_id;
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "target_event_id", new _M0DTPB4Json6String(_p$2));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "removed_event_ids", _M0IPC15array5ArrayPB6ToJson8to__jsonGsE(_x_98.removed_event_ids));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "before", _M0IPC13int3IntPB6ToJson8to__json(_x_98.before));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "after", _M0IPC13int3IntPB6ToJson8to__json(_x_98.after));
+  const _p$3 = _x_98.guarantee;
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "guarantee", new _M0DTPB4Json6String(_p$3));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "tape", _M0IP29CodeAIKai11agent__tape4TapePB6ToJson8to__json(_x_98.tape));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "report", _M0IP29CodeAIKai11agent__tape6ReportPB6ToJson8to__json(_x_98.report));
   return new _M0DTPB4Json6Object($36$map);
 }
-function _M0IP29CodeAIKai11agent__tape6ReportPB6ToJson8to__json(_x_86) {
+function _M0IP29CodeAIKai11agent__tape6ReportPB6ToJson8to__json(_x_95) {
   const _bind = [];
   const $36$map = _M0MPB3Map3MapGsRPB4JsonE(new _M0TPB9ArrayViewGUsRPB4JsonEE(_bind, 0, 0), undefined);
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "ok", _M0IPC14bool4BoolPB6ToJson8to__json(_x_86.ok));
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "calls", _M0IPC13int3IntPB6ToJson8to__json(_x_86.calls));
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "total_cost", _M0IPC13int3IntPB6ToJson8to__json(_x_86.total_cost));
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "violations", _M0IPC15array5ArrayPB6ToJson8to__jsonGRP29CodeAIKai11agent__tape9ViolationE(_x_86.violations));
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "replay", _M0IPC15array5ArrayPB6ToJson8to__jsonGRP29CodeAIKai11agent__tape10ReplayStepE(_x_86.replay));
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "network_calls", _M0IPC13int3IntPB6ToJson8to__json(_x_86.network_calls));
-  const _p = _x_86.engine;
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "ok", _M0IPC14bool4BoolPB6ToJson8to__json(_x_95.ok));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "calls", _M0IPC13int3IntPB6ToJson8to__json(_x_95.calls));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "total_cost", _M0IPC13int3IntPB6ToJson8to__json(_x_95.total_cost));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "violations", _M0IPC15array5ArrayPB6ToJson8to__jsonGRP29CodeAIKai11agent__tape9ViolationE(_x_95.violations));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "replay", _M0IPC15array5ArrayPB6ToJson8to__jsonGRP29CodeAIKai11agent__tape10ReplayStepE(_x_95.replay));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "network_calls", _M0IPC13int3IntPB6ToJson8to__json(_x_95.network_calls));
+  const _p = _x_95.engine;
   _M0MPB3Map3setGsRPB4JsonE($36$map, "engine", new _M0DTPB4Json6String(_p));
   return new _M0DTPB4Json6Object($36$map);
 }
-function _M0IP29CodeAIKai11agent__tape6PolicyPB6ToJson8to__json(_x_83) {
+function _M0IP29CodeAIKai11agent__tape6PolicyPB6ToJson8to__json(_x_92) {
   const _bind = [];
   const $36$map = _M0MPB3Map3MapGsRPB4JsonE(new _M0TPB9ArrayViewGUsRPB4JsonEE(_bind, 0, 0), undefined);
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "allowed_tools", _M0IPC15array5ArrayPB6ToJson8to__jsonGsE(_x_83.allowed_tools));
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "side_effect_tools", _M0IPC15array5ArrayPB6ToJson8to__jsonGsE(_x_83.side_effect_tools));
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "max_total_cost", _M0IPC13int3IntPB6ToJson8to__json(_x_83.max_total_cost));
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "max_calls", _M0IPC13int3IntPB6ToJson8to__json(_x_83.max_calls));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "allowed_tools", _M0IPC15array5ArrayPB6ToJson8to__jsonGsE(_x_92.allowed_tools));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "side_effect_tools", _M0IPC15array5ArrayPB6ToJson8to__jsonGsE(_x_92.side_effect_tools));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "max_total_cost", _M0IPC13int3IntPB6ToJson8to__json(_x_92.max_total_cost));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "max_calls", _M0IPC13int3IntPB6ToJson8to__json(_x_92.max_calls));
   return new _M0DTPB4Json6Object($36$map);
 }
-function _M0IP29CodeAIKai11agent__tape6PolicyPC14json8FromJson10from__json(_x_58, _x_59) {
-  let _de_side_effect_tools_63 = _M0DTPC16option6OptionGRPB5ArrayGsEE4None__;
-  let _de_max_total_cost_62 = undefined;
-  let _de_max_calls_61 = undefined;
-  let _de_allowed_tools_60 = _M0DTPC16option6OptionGRPB5ArrayGsEE4None__;
-  if (_x_58.$tag === 6) {
-    const _Object = _x_58;
+function _M0IP29CodeAIKai11agent__tape6PolicyPC14json8FromJson10from__json(_x_67, _x_68) {
+  let _de_side_effect_tools_72 = _M0DTPC16option6OptionGRPB5ArrayGsEE4None__;
+  let _de_max_total_cost_71 = undefined;
+  let _de_max_calls_70 = undefined;
+  let _de_allowed_tools_69 = _M0DTPC16option6OptionGRPB5ArrayGsEE4None__;
+  if (_x_67.$tag === 6) {
+    const _Object = _x_67;
     const __map = _Object._0;
     const _bind = _M0MPB3Map3getGsRPB4JsonE(__map, "allowed_tools");
     if (_bind === undefined) {
@@ -5369,7 +5374,7 @@ function _M0IP29CodeAIKai11agent__tape6PolicyPC14json8FromJson10from__json(_x_58
       const _Some = _bind;
       const __v = _Some;
       const _p = "allowed_tools";
-      const _bind$2 = _M0IPC15array5ArrayPC14json8FromJson10from__jsonGsE(__v, new _M0DTPC14json8JsonPath3Key(_x_59, _p));
+      const _bind$2 = _M0IPC15array5ArrayPC14json8FromJson10from__jsonGsE(__v, new _M0DTPC14json8JsonPath3Key(_x_68, _p));
       let _tmp;
       if (_bind$2.$tag === 1) {
         const _ok = _bind$2;
@@ -5377,7 +5382,7 @@ function _M0IP29CodeAIKai11agent__tape6PolicyPC14json8FromJson10from__json(_x_58
       } else {
         return _bind$2;
       }
-      _de_allowed_tools_60 = new _M0DTPC16option6OptionGRPB5ArrayGsEE4Some(_tmp);
+      _de_allowed_tools_69 = new _M0DTPC16option6OptionGRPB5ArrayGsEE4Some(_tmp);
     }
     const _bind$2 = _M0MPB3Map3getGsRPB4JsonE(__map, "side_effect_tools");
     if (_bind$2 === undefined) {
@@ -5385,7 +5390,7 @@ function _M0IP29CodeAIKai11agent__tape6PolicyPC14json8FromJson10from__json(_x_58
       const _Some = _bind$2;
       const __v = _Some;
       const _p = "side_effect_tools";
-      const _bind$3 = _M0IPC15array5ArrayPC14json8FromJson10from__jsonGsE(__v, new _M0DTPC14json8JsonPath3Key(_x_59, _p));
+      const _bind$3 = _M0IPC15array5ArrayPC14json8FromJson10from__jsonGsE(__v, new _M0DTPC14json8JsonPath3Key(_x_68, _p));
       let _tmp;
       if (_bind$3.$tag === 1) {
         const _ok = _bind$3;
@@ -5393,7 +5398,7 @@ function _M0IP29CodeAIKai11agent__tape6PolicyPC14json8FromJson10from__json(_x_58
       } else {
         return _bind$3;
       }
-      _de_side_effect_tools_63 = new _M0DTPC16option6OptionGRPB5ArrayGsEE4Some(_tmp);
+      _de_side_effect_tools_72 = new _M0DTPC16option6OptionGRPB5ArrayGsEE4Some(_tmp);
     }
     const _bind$3 = _M0MPB3Map3getGsRPB4JsonE(__map, "max_total_cost");
     if (_bind$3 === undefined) {
@@ -5401,7 +5406,7 @@ function _M0IP29CodeAIKai11agent__tape6PolicyPC14json8FromJson10from__json(_x_58
       const _Some = _bind$3;
       const __v = _Some;
       const _p = "max_total_cost";
-      const _bind$4 = _M0IPC13int3IntPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_59, _p));
+      const _bind$4 = _M0IPC13int3IntPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_68, _p));
       let _tmp;
       if (_bind$4.$tag === 1) {
         const _ok = _bind$4;
@@ -5409,7 +5414,7 @@ function _M0IP29CodeAIKai11agent__tape6PolicyPC14json8FromJson10from__json(_x_58
       } else {
         return _bind$4;
       }
-      _de_max_total_cost_62 = _tmp;
+      _de_max_total_cost_71 = _tmp;
     }
     const _bind$4 = _M0MPB3Map3getGsRPB4JsonE(__map, "max_calls");
     if (_bind$4 === undefined) {
@@ -5417,7 +5422,7 @@ function _M0IP29CodeAIKai11agent__tape6PolicyPC14json8FromJson10from__json(_x_58
       const _Some = _bind$4;
       const __v = _Some;
       const _p = "max_calls";
-      const _bind$5 = _M0IPC13int3IntPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_59, _p));
+      const _bind$5 = _M0IPC13int3IntPC14json8FromJson10from__json(__v, new _M0DTPC14json8JsonPath3Key(_x_68, _p));
       let _tmp;
       if (_bind$5.$tag === 1) {
         const _ok = _bind$5;
@@ -5425,54 +5430,54 @@ function _M0IP29CodeAIKai11agent__tape6PolicyPC14json8FromJson10from__json(_x_58
       } else {
         return _bind$5;
       }
-      _de_max_calls_61 = _tmp;
+      _de_max_calls_70 = _tmp;
     }
   } else {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape6PolicyRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_59, _1: "Expected object to deserialize Policy" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape6PolicyRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_68, _1: "Expected object to deserialize Policy" }));
   }
-  const _bind = _de_side_effect_tools_63;
-  let _de_side_effect_tools_63$2;
+  const _bind = _de_side_effect_tools_72;
+  let _de_side_effect_tools_72$2;
   if (_bind.$tag === 1) {
     const _Some = _bind;
-    _de_side_effect_tools_63$2 = _Some._0;
+    _de_side_effect_tools_72$2 = _Some._0;
   } else {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape6PolicyRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_59, _1: "Missing field side_effect_tools" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape6PolicyRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_68, _1: "Missing field side_effect_tools" }));
   }
-  const _bind$2 = _de_max_total_cost_62;
-  let _de_max_total_cost_62$2;
+  const _bind$2 = _de_max_total_cost_71;
+  let _de_max_total_cost_71$2;
   if (_bind$2 === undefined) {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape6PolicyRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_59, _1: "Missing field max_total_cost" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape6PolicyRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_68, _1: "Missing field max_total_cost" }));
   } else {
     const _Some = _bind$2;
-    _de_max_total_cost_62$2 = _Some;
+    _de_max_total_cost_71$2 = _Some;
   }
-  const _bind$3 = _de_max_calls_61;
-  let _de_max_calls_61$2;
+  const _bind$3 = _de_max_calls_70;
+  let _de_max_calls_70$2;
   if (_bind$3 === undefined) {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape6PolicyRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_59, _1: "Missing field max_calls" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape6PolicyRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_68, _1: "Missing field max_calls" }));
   } else {
     const _Some = _bind$3;
-    _de_max_calls_61$2 = _Some;
+    _de_max_calls_70$2 = _Some;
   }
-  const _bind$4 = _de_allowed_tools_60;
-  let _de_allowed_tools_60$2;
+  const _bind$4 = _de_allowed_tools_69;
+  let _de_allowed_tools_69$2;
   if (_bind$4.$tag === 1) {
     const _Some = _bind$4;
-    _de_allowed_tools_60$2 = _Some._0;
+    _de_allowed_tools_69$2 = _Some._0;
   } else {
-    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape6PolicyRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_59, _1: "Missing field allowed_tools" }));
+    return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape6PolicyRPC14json15JsonDecodeErrorE3Err(new _M0DTPC15error5Error61moonbitlang_2fcore_2fjson_2eJsonDecodeError_2eJsonDecodeError({ _0: _x_68, _1: "Missing field allowed_tools" }));
   }
-  return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape6PolicyRPC14json15JsonDecodeErrorE2Ok(new _M0TP29CodeAIKai11agent__tape6Policy(_de_allowed_tools_60$2, _de_side_effect_tools_63$2, _de_max_total_cost_62$2, _de_max_calls_61$2));
+  return new _M0DTPC16result6ResultGRP29CodeAIKai11agent__tape6PolicyRPC14json15JsonDecodeErrorE2Ok(new _M0TP29CodeAIKai11agent__tape6Policy(_de_allowed_tools_69$2, _de_side_effect_tools_72$2, _de_max_total_cost_71$2, _de_max_calls_70$2));
 }
-function _M0IP29CodeAIKai11agent__tape9ViolationPB6ToJson8to__json(_x_55) {
+function _M0IP29CodeAIKai11agent__tape9ViolationPB6ToJson8to__json(_x_64) {
   const _bind = [];
   const $36$map = _M0MPB3Map3MapGsRPB4JsonE(new _M0TPB9ArrayViewGUsRPB4JsonEE(_bind, 0, 0), undefined);
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "step", _M0IPC13int3IntPB6ToJson8to__json(_x_55.step));
-  const _p = _x_55.event_id;
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "step", _M0IPC13int3IntPB6ToJson8to__json(_x_64.step));
+  const _p = _x_64.event_id;
   _M0MPB3Map3setGsRPB4JsonE($36$map, "event_id", new _M0DTPB4Json6String(_p));
-  const _p$2 = _x_55.code;
+  const _p$2 = _x_64.code;
   _M0MPB3Map3setGsRPB4JsonE($36$map, "code", new _M0DTPB4Json6String(_p$2));
-  const _p$3 = _x_55.message;
+  const _p$3 = _x_64.message;
   _M0MPB3Map3setGsRPB4JsonE($36$map, "message", new _M0DTPB4Json6String(_p$3));
   return new _M0DTPB4Json6Object($36$map);
 }
@@ -5511,7 +5516,7 @@ function _M0FP29CodeAIKai11agent__tape18valid__tool__names(items) {
       if (item.length === 0 || (item.length > 120 || _M0FP29CodeAIKai11agent__tape3has(seen, item))) {
         return false;
       }
-      _M0MPC15array5Array4pushGRPC14json10WriteFrameE(seen, item);
+      _M0MPC15array5Array4pushGsE(seen, item);
       _tmp = _ + 1 | 0;
       continue;
     } else {
@@ -5523,17 +5528,17 @@ function _M0FP29CodeAIKai11agent__tape18valid__tool__names(items) {
 function _M0FP29CodeAIKai11agent__tape13shape__errors(t) {
   const errors = [];
   if (t.version !== 1) {
-    _M0MPC15array5Array4pushGRPC14json10WriteFrameE(errors, _M0FP29CodeAIKai11agent__tape9violation(-1, "schema", "SCHEMA", "Only tape version 1 is supported"));
+    _M0MPC15array5Array4pushGsE(errors, _M0FP29CodeAIKai11agent__tape9violation(-1, "schema", "SCHEMA", "Only tape version 1 is supported"));
   }
   if (t.events.length > 300 || t.fixtures.length > 300) {
-    _M0MPC15array5Array4pushGRPC14json10WriteFrameE(errors, _M0FP29CodeAIKai11agent__tape9violation(-1, "schema", "LIMIT", "Maximum 300 events and fixtures"));
+    _M0MPC15array5Array4pushGsE(errors, _M0FP29CodeAIKai11agent__tape9violation(-1, "schema", "LIMIT", "Maximum 300 events and fixtures"));
     return errors;
   }
   if (!_M0FP29CodeAIKai11agent__tape18valid__tool__names(t.policy.allowed_tools) || !_M0FP29CodeAIKai11agent__tape18valid__tool__names(t.policy.side_effect_tools)) {
-    _M0MPC15array5Array4pushGRPC14json10WriteFrameE(errors, _M0FP29CodeAIKai11agent__tape9violation(-1, "policy", "SCHEMA", "Tool lists require unique nonempty names of at most 120 characters, with at most 300 entries"));
+    _M0MPC15array5Array4pushGsE(errors, _M0FP29CodeAIKai11agent__tape9violation(-1, "policy", "SCHEMA", "Tool lists require unique nonempty names of at most 120 characters, with at most 300 entries"));
   }
   if (t.policy.max_total_cost < 0 || (t.policy.max_total_cost > 100000000 || (t.policy.max_calls < 0 || t.policy.max_calls > 300))) {
-    _M0MPC15array5Array4pushGRPC14json10WriteFrameE(errors, _M0FP29CodeAIKai11agent__tape9violation(-1, "policy", "SCHEMA", "Invalid policy bounds"));
+    _M0MPC15array5Array4pushGsE(errors, _M0FP29CodeAIKai11agent__tape9violation(-1, "policy", "SCHEMA", "Invalid policy bounds"));
   }
   const ids = [];
   const _bind = t.events;
@@ -5544,9 +5549,9 @@ function _M0FP29CodeAIKai11agent__tape13shape__errors(t) {
     if (i < _bind$2) {
       const e = _bind[i];
       if (e.id.length === 0 || (e.id.length > 120 || _M0FP29CodeAIKai11agent__tape3has(ids, e.id))) {
-        _M0MPC15array5Array4pushGRPC14json10WriteFrameE(errors, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "SCHEMA", "Event IDs must be nonempty and unique"));
+        _M0MPC15array5Array4pushGsE(errors, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "SCHEMA", "Event IDs must be nonempty and unique"));
       }
-      _M0MPC15array5Array4pushGRPC14json10WriteFrameE(ids, e.id);
+      _M0MPC15array5Array4pushGsE(ids, e.id);
       let _tmp$2;
       const _p = e.kind;
       const _p$2 = "call";
@@ -5558,13 +5563,13 @@ function _M0FP29CodeAIKai11agent__tape13shape__errors(t) {
         _tmp$2 = false;
       }
       if (_tmp$2) {
-        _M0MPC15array5Array4pushGRPC14json10WriteFrameE(errors, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "SCHEMA", "Unknown event kind"));
+        _M0MPC15array5Array4pushGsE(errors, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "SCHEMA", "Unknown event kind"));
       }
       if (e.cost < 0 || (e.cost > 1000000 || (e.tool.length === 0 || (e.tool.length > 120 || (e.args_key.length > 4000 || e.result.length > 8000))))) {
-        _M0MPC15array5Array4pushGRPC14json10WriteFrameE(errors, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "SCHEMA", "Invalid event bounds"));
+        _M0MPC15array5Array4pushGsE(errors, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "SCHEMA", "Invalid event bounds"));
       }
       if (e.kind === "approve" && e.cost !== 0) {
-        _M0MPC15array5Array4pushGRPC14json10WriteFrameE(errors, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "SCHEMA", "Approval events cannot incur tool cost"));
+        _M0MPC15array5Array4pushGsE(errors, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "SCHEMA", "Approval events cannot incur tool cost"));
       }
       let _tmp$3;
       if (e.kind === "approve" && (e.target.length === 0 || e.target.length > 120)) {
@@ -5581,7 +5586,7 @@ function _M0FP29CodeAIKai11agent__tape13shape__errors(t) {
         _tmp$3 = _tmp$4;
       }
       if (_tmp$3) {
-        _M0MPC15array5Array4pushGRPC14json10WriteFrameE(errors, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "SCHEMA", "Approvals require a target call ID; call events require an empty target"));
+        _M0MPC15array5Array4pushGsE(errors, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "SCHEMA", "Approvals require a target call ID; call events require an empty target"));
       }
       _tmp = i + 1 | 0;
       continue;
@@ -5597,7 +5602,7 @@ function _M0FP29CodeAIKai11agent__tape13shape__errors(t) {
     if (i < _bind$4) {
       const f = _bind$3[i];
       if (f.tool.length === 0 || (f.tool.length > 120 || (f.args_key.length > 4000 || f.result.length > 8000))) {
-        _M0MPC15array5Array4pushGRPC14json10WriteFrameE(errors, _M0FP29CodeAIKai11agent__tape9violation(-1, "fixture", "SCHEMA", "Invalid fixture bounds"));
+        _M0MPC15array5Array4pushGsE(errors, _M0FP29CodeAIKai11agent__tape9violation(-1, "fixture", "SCHEMA", "Invalid fixture bounds"));
       }
       let _tmp$3 = 0;
       while (true) {
@@ -5605,7 +5610,7 @@ function _M0FP29CodeAIKai11agent__tape13shape__errors(t) {
         if (j < i) {
           const other = _M0MPC15array5Array2atGRP29CodeAIKai11agent__tape9ViolationE(t.fixtures, j);
           if (f.tool === other.tool && f.args_key === other.args_key) {
-            _M0MPC15array5Array4pushGRPC14json10WriteFrameE(errors, _M0FP29CodeAIKai11agent__tape9violation(-1, "fixture", "SCHEMA", "Duplicate tool/argument fixture"));
+            _M0MPC15array5Array4pushGsE(errors, _M0FP29CodeAIKai11agent__tape9violation(-1, "fixture", "SCHEMA", "Duplicate tool/argument fixture"));
           }
           _tmp$3 = j + 1 | 0;
           continue;
@@ -5642,22 +5647,22 @@ function _M0FP29CodeAIKai11agent__tape8evaluate(t) {
       _L: {
         if (e.kind === "approve") {
           if (_M0FP29CodeAIKai11agent__tape3has(executed, e.target)) {
-            _M0MPC15array5Array4pushGRPC14json10WriteFrameE(violations, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "LATE_APPROVAL", "Approval arrived after the target call"));
+            _M0MPC15array5Array4pushGsE(violations, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "LATE_APPROVAL", "Approval arrived after the target call"));
           }
-          _M0MPC15array5Array4pushGRPC14json10WriteFrameE(approvals, e);
+          _M0MPC15array5Array4pushGsE(approvals, e);
           break _L;
         }
         calls = calls + 1 | 0;
         total = total + e.cost | 0;
-        _M0MPC15array5Array4pushGRPC14json10WriteFrameE(executed, e.id);
+        _M0MPC15array5Array4pushGsE(executed, e.id);
         if (!_M0FP29CodeAIKai11agent__tape3has(t.policy.allowed_tools, e.tool)) {
-          _M0MPC15array5Array4pushGRPC14json10WriteFrameE(violations, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "TOOL_DENIED", "Tool is not on the allowlist"));
+          _M0MPC15array5Array4pushGsE(violations, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "TOOL_DENIED", "Tool is not on the allowlist"));
         }
         if (calls > t.policy.max_calls) {
-          _M0MPC15array5Array4pushGRPC14json10WriteFrameE(violations, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "CALL_LIMIT", "Call count exceeded"));
+          _M0MPC15array5Array4pushGsE(violations, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "CALL_LIMIT", "Call count exceeded"));
         }
         if (total > t.policy.max_total_cost) {
-          _M0MPC15array5Array4pushGRPC14json10WriteFrameE(violations, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "BUDGET", "Cumulative recorded cost exceeded"));
+          _M0MPC15array5Array4pushGsE(violations, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "BUDGET", "Cumulative recorded cost exceeded"));
         }
         if (_M0FP29CodeAIKai11agent__tape3has(t.policy.side_effect_tools, e.tool)) {
           let approved = false;
@@ -5669,7 +5674,7 @@ function _M0FP29CodeAIKai11agent__tape8evaluate(t) {
               const a = approvals[_];
               if (a.target === e.id && (a.tool === e.tool && (a.args_key === e.args_key && (!_M0FP29CodeAIKai11agent__tape3has(used_approvals, a.id) && !approved)))) {
                 approved = true;
-                _M0MPC15array5Array4pushGRPC14json10WriteFrameE(used_approvals, a.id);
+                _M0MPC15array5Array4pushGsE(used_approvals, a.id);
               }
               _tmp$2 = _ + 1 | 0;
               continue;
@@ -5678,7 +5683,7 @@ function _M0FP29CodeAIKai11agent__tape8evaluate(t) {
             }
           }
           if (!approved) {
-            _M0MPC15array5Array4pushGRPC14json10WriteFrameE(violations, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "APPROVAL_REQUIRED", "No prior approval for this call and exact arguments"));
+            _M0MPC15array5Array4pushGsE(violations, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "APPROVAL_REQUIRED", "No prior approval for this call and exact arguments"));
           }
         }
         let found = false;
@@ -5691,11 +5696,11 @@ function _M0FP29CodeAIKai11agent__tape8evaluate(t) {
             const f = _bind$3[_];
             if (f.tool === e.tool && f.args_key === e.args_key) {
               found = true;
-              _M0MPC15array5Array4pushGRPC14json10WriteFrameE(replay, new _M0TP29CodeAIKai11agent__tape10ReplayStep(i, e.id, e.tool, f.result, "fixture"));
+              _M0MPC15array5Array4pushGsE(replay, new _M0TP29CodeAIKai11agent__tape10ReplayStep(i, e.id, e.tool, f.result, "fixture"));
               const _p = f.result;
               const _p$2 = e.result;
               if (!(_p === _p$2)) {
-                _M0MPC15array5Array4pushGRPC14json10WriteFrameE(violations, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "RESULT_DRIFT", "Recorded result differs from fixture"));
+                _M0MPC15array5Array4pushGsE(violations, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "RESULT_DRIFT", "Recorded result differs from fixture"));
               }
             }
             _tmp$2 = _ + 1 | 0;
@@ -5705,7 +5710,7 @@ function _M0FP29CodeAIKai11agent__tape8evaluate(t) {
           }
         }
         if (!found) {
-          _M0MPC15array5Array4pushGRPC14json10WriteFrameE(violations, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "MISSING_FIXTURE", "No matching fixture; network fallback is forbidden"));
+          _M0MPC15array5Array4pushGsE(violations, _M0FP29CodeAIKai11agent__tape9violation(i, e.id, "MISSING_FIXTURE", "No matching fixture; network fallback is forbidden"));
         }
         break _L;
       }
@@ -5717,7 +5722,7 @@ function _M0FP29CodeAIKai11agent__tape8evaluate(t) {
   }
   return new _M0TP29CodeAIKai11agent__tape6Report(violations.length === 0, calls, total, violations, replay, 0, "MoonBit AgentTape 0.1");
 }
-function _M0FP29CodeAIKai11agent__tape14contains__code(t, code) {
+function _M0FP29CodeAIKai11agent__tape16contains__target(t, code, event_id) {
   const r = _M0FP29CodeAIKai11agent__tape8evaluate(t);
   const _bind = r.violations;
   const _bind$2 = _bind.length;
@@ -5726,7 +5731,7 @@ function _M0FP29CodeAIKai11agent__tape14contains__code(t, code) {
     const _ = _tmp;
     if (_ < _bind$2) {
       const v = _bind[_];
-      if (v.code === code) {
+      if (v.code === code && (event_id === "" || v.event_id === event_id)) {
         return true;
       }
       _tmp = _ + 1 | 0;
@@ -5737,7 +5742,7 @@ function _M0FP29CodeAIKai11agent__tape14contains__code(t, code) {
   }
   return false;
 }
-function _M0FP29CodeAIKai11agent__tape12reduce__tape(t, code) {
+function _M0FP29CodeAIKai11agent__tape14reduce__target(t, code, event_id) {
   let current = t;
   let changed = true;
   while (true) {
@@ -5756,7 +5761,7 @@ function _M0FP29CodeAIKai11agent__tape12reduce__tape(t, code) {
             if (i < _bind$2) {
               const e = _bind[i];
               if (i !== drop) {
-                _M0MPC15array5Array4pushGRPC14json10WriteFrameE(events, e);
+                _M0MPC15array5Array4pushGsE(events, e);
               }
               _tmp$2 = i + 1 | 0;
               continue;
@@ -5766,7 +5771,7 @@ function _M0FP29CodeAIKai11agent__tape12reduce__tape(t, code) {
           }
           const _bind$3 = current;
           const candidate = new _M0TP29CodeAIKai11agent__tape4Tape(_bind$3.version, _bind$3.policy, _bind$3.fixtures, events);
-          if (_M0FP29CodeAIKai11agent__tape14contains__code(candidate, code)) {
+          if (_M0FP29CodeAIKai11agent__tape16contains__target(candidate, code, event_id)) {
             current = candidate;
             changed = true;
             break;
@@ -5814,23 +5819,45 @@ function _M0FP29CodeAIKai11agent__tape14evaluate__json(input) {
   }
   return "{\"ok\":false,\"error\":\"INVALID_JSON_OR_SCHEMA\"}";
 }
-function _M0FP29CodeAIKai11agent__tape14minimize__json(input) {
+function _M0FP29CodeAIKai11agent__tape22minimize__target__json(input, requested_code, event_id) {
   if (input.length > 200000) {
     return "{\"ok\":false,\"error\":\"INPUT_TOO_LARGE\"}";
+  }
+  let _tmp;
+  if (requested_code.length > 120) {
+    _tmp = true;
+  } else {
+    let _tmp$2;
+    if (event_id.length > 120) {
+      _tmp$2 = true;
+    } else {
+      let _tmp$3;
+      if (requested_code === "") {
+        const _p = "";
+        _tmp$3 = !(event_id === _p);
+      } else {
+        _tmp$3 = false;
+      }
+      _tmp$2 = _tmp$3;
+    }
+    _tmp = _tmp$2;
+  }
+  if (_tmp) {
+    return "{\"ok\":false,\"error\":\"INVALID_REDUCTION_TARGET\"}";
   }
   let _try_err;
   _L: {
     const _bind = _M0FPC14json13parse_2einner(new _M0TPC16string10StringView(input, 0, input.length), 1024);
-    let _tmp;
+    let _tmp$2;
     if (_bind.$tag === 1) {
       const _ok = _bind;
-      _tmp = _ok._0;
+      _tmp$2 = _ok._0;
     } else {
       const _err = _bind;
       _try_err = _err._0;
       break _L;
     }
-    const _bind$2 = _M0FPC14json10from__jsonGRP29CodeAIKai11agent__tape4TapeE(_tmp, undefined);
+    const _bind$2 = _M0FPC14json10from__jsonGRP29CodeAIKai11agent__tape4TapeE(_tmp$2, undefined);
     let tape;
     if (_bind$2.$tag === 1) {
       const _ok = _bind$2;
@@ -5845,18 +5872,61 @@ function _M0FP29CodeAIKai11agent__tape14minimize__json(input) {
     }
     const report = _M0FP29CodeAIKai11agent__tape8evaluate(tape);
     if (report.ok) {
+      const _p = "";
+      if (!(requested_code === _p)) {
+        return "{\"ok\":false,\"error\":\"TARGET_NOT_FOUND\"}";
+      }
       return "{\"ok\":true,\"message\":\"NO_VIOLATION\"}";
     }
-    const code = _M0MPC15array5Array2atGRP29CodeAIKai11agent__tape9ViolationE(report.violations, 0).code;
+    const code = requested_code === "" ? _M0MPC15array5Array2atGRP29CodeAIKai11agent__tape9ViolationE(report.violations, 0).code : requested_code;
     if (code === "SCHEMA" || code === "LIMIT") {
       return "{\"ok\":false,\"error\":\"FIX_SCHEMA_BEFORE_REDUCTION\"}";
     }
-    const reduced = _M0FP29CodeAIKai11agent__tape12reduce__tape(tape, code);
-    const output = new _M0TP29CodeAIKai11agent__tape7Reduced(code, tape.events.length, reduced.events.length, "1-minimal for the same violation code; not globally shortest or same causal bug", reduced, _M0FP29CodeAIKai11agent__tape8evaluate(reduced));
+    if (!_M0FP29CodeAIKai11agent__tape16contains__target(tape, code, event_id)) {
+      return "{\"ok\":false,\"error\":\"TARGET_NOT_FOUND\"}";
+    }
+    const reduced = _M0FP29CodeAIKai11agent__tape14reduce__target(tape, code, event_id);
+    const _p = reduced.events;
+    const _p$2 = new Array(_p.length);
+    const _p$3 = _p.length;
+    let _tmp$3 = 0;
+    while (true) {
+      const _p$4 = _tmp$3;
+      if (_p$4 < _p$3) {
+        const _p$5 = _p[_p$4];
+        _p$2[_p$4] = _p$5.id;
+        _tmp$3 = _p$4 + 1 | 0;
+        continue;
+      } else {
+        break;
+      }
+    }
+    const retained_ids = _p$2;
+    const removed_ids = [];
+    const _bind$3 = tape.events;
+    const _bind$4 = _bind$3.length;
+    let _tmp$4 = 0;
+    while (true) {
+      const _ = _tmp$4;
+      if (_ < _bind$4) {
+        const e = _bind$3[_];
+        if (!_M0FP29CodeAIKai11agent__tape3has(retained_ids, e.id)) {
+          _M0MPC15array5Array4pushGsE(removed_ids, e.id);
+        }
+        _tmp$4 = _ + 1 | 0;
+        continue;
+      } else {
+        break;
+      }
+    }
+    const output = new _M0TP29CodeAIKai11agent__tape7Reduced(code, event_id, removed_ids, tape.events.length, reduced.events.length, "1-minimal for the target violation code and optional event ID; not globally shortest or same causal bug", reduced, _M0FP29CodeAIKai11agent__tape8evaluate(reduced));
     return _M0MPC14json4Json17stringify_2einner(_M0IP29CodeAIKai11agent__tape7ReducedPB6ToJson8to__json(output), false, 0, undefined);
   }
   return "{\"ok\":false,\"error\":\"INVALID_JSON_OR_SCHEMA\"}";
 }
+function _M0FP29CodeAIKai11agent__tape14minimize__json(input) {
+  return _M0FP29CodeAIKai11agent__tape22minimize__target__json(input, "", "");
+}
 (() => {
 })();
-export { _M0FP29CodeAIKai11agent__tape14evaluate__json as evaluate_json, _M0FP29CodeAIKai11agent__tape14minimize__json as minimize_json }
+export { _M0FP29CodeAIKai11agent__tape14evaluate__json as evaluate_json, _M0FP29CodeAIKai11agent__tape22minimize__target__json as minimize_target_json, _M0FP29CodeAIKai11agent__tape14minimize__json as minimize_json }

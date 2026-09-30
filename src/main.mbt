@@ -306,21 +306,19 @@ fn evaluate(t : Tape) -> Report {
 }
 
 ///|
-fn contains_code(t : Tape, code : String) -> Bool {
+fn contains_target(t : Tape, code : String, event_id : String) -> Bool {
   let r = evaluate(t)
   for v in r.violations {
-    if v.code == code {
+    if v.code == code && (event_id == "" || v.event_id == event_id) {
       return true
     }
   }
   false
 }
 
-///| Greedy fixed-point reducer: preserves the first violation code.
-
 ///|
-/// It produces a 1-minimal subsequence, not a globally shortest trace.
-fn reduce_tape(t : Tape, code : String) -> Tape {
+/// Greedy fixed-point reduction for a code and optional event identity.
+fn reduce_target(t : Tape, code : String, event_id : String) -> Tape {
   let mut current = t
   let mut changed = true
   while changed {
@@ -333,7 +331,7 @@ fn reduce_tape(t : Tape, code : String) -> Tape {
         }
       }
       let candidate = { ..current, events, }
-      if contains_code(candidate, code) {
+      if contains_target(candidate, code, event_id) {
         current = candidate
         changed = true
         break
@@ -359,6 +357,8 @@ pub fn evaluate_json(input : String) -> String {
 ///|
 struct Reduced {
   target_code : String
+  target_event_id : String
+  removed_event_ids : Array[String]
   before : Int
   after : Int
   guarantee : String
@@ -368,8 +368,22 @@ struct Reduced {
 
 ///|
 pub fn minimize_json(input : String) -> String {
+  minimize_target_json(input, "", "")
+}
+
+///|
+pub fn minimize_target_json(
+  input : String,
+  requested_code : String,
+  event_id : String,
+) -> String {
   if input.length() > 200000 {
     return "{\"ok\":false,\"error\":\"INPUT_TOO_LARGE\"}"
+  }
+  if requested_code.length() > 120 ||
+    event_id.length() > 120 ||
+    (requested_code == "" && event_id != "") {
+    return "{\"ok\":false,\"error\":\"INVALID_REDUCTION_TARGET\"}"
   }
   try {
     let tape : Tape = @json.from_json(@json.parse(input))
@@ -378,18 +392,37 @@ pub fn minimize_json(input : String) -> String {
     }
     let report = evaluate(tape)
     if report.ok {
+      if requested_code != "" {
+        return "{\"ok\":false,\"error\":\"TARGET_NOT_FOUND\"}"
+      }
       return "{\"ok\":true,\"message\":\"NO_VIOLATION\"}"
     }
-    let code = report.violations[0].code
+    let code = if requested_code == "" {
+      report.violations[0].code
+    } else {
+      requested_code
+    }
     if code == "SCHEMA" || code == "LIMIT" {
       return "{\"ok\":false,\"error\":\"FIX_SCHEMA_BEFORE_REDUCTION\"}"
     }
-    let reduced = reduce_tape(tape, code)
+    if !contains_target(tape, code, event_id) {
+      return "{\"ok\":false,\"error\":\"TARGET_NOT_FOUND\"}"
+    }
+    let reduced = reduce_target(tape, code, event_id)
+    let retained_ids = reduced.events.map(fn(e) { e.id })
+    let removed_ids : Array[String] = []
+    for e in tape.events {
+      if !has(retained_ids, e.id) {
+        removed_ids.push(e.id)
+      }
+    }
     let output : Reduced = {
       target_code: code,
+      target_event_id: event_id,
+      removed_event_ids: removed_ids,
       before: tape.events.length(),
       after: reduced.events.length(),
-      guarantee: "1-minimal for the same violation code; not globally shortest or same causal bug",
+      guarantee: "1-minimal for the target violation code and optional event ID; not globally shortest or same causal bug",
       tape: reduced,
       report: evaluate(reduced),
     }

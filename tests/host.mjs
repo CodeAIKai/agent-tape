@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {evaluate_json,minimize_json} from '../web/agent_tape.js';
+import {evaluate_json,minimize_json,minimize_target_json} from '../web/agent_tape.js';
 const load=n=>readFileSync(new URL('../fixtures/'+n+'.json',import.meta.url),'utf8');
 const raw=load('missing-approval'),good=load('approved');
 assert.equal(JSON.parse(evaluate_json(good)).ok,true);
@@ -11,6 +11,15 @@ assert.equal(evaluate_json(raw),evaluate_json(raw));
 for(let budget=0;budget<12;budget++){const t=JSON.parse(good);t.policy.max_total_cost=budget;const r=JSON.parse(evaluate_json(JSON.stringify(t)));assert.equal(r.violations.some(x=>x.code==='BUDGET'),r.total_cost>budget);assert.equal(r.network_calls,0)}
 assert.equal(JSON.parse(evaluate_json('{')).error,'INVALID_JSON_OR_SCHEMA');
 assert.equal(JSON.parse(evaluate_json('x'.repeat(200001))).error,'INPUT_TOO_LARGE');
+const multi=JSON.parse(raw);
+multi.events.push({...multi.events.at(-1),id:'send2'});
+const selected=JSON.parse(minimize_target_json(JSON.stringify(multi),'APPROVAL_REQUIRED','send1'));
+assert.deepEqual(selected.tape.events.map(e=>e.id),['send1']);
+assert.equal(selected.target_event_id,'send1');
+assert.deepEqual(selected.removed_event_ids,['search1','draft1','send2']);
+assert.equal(JSON.parse(minimize_target_json(raw,'APPROVAL_REQUIRED','unknown')).error,'TARGET_NOT_FOUND');
+assert.equal(JSON.parse(minimize_target_json(raw,'','send1')).error,'INVALID_REDUCTION_TARGET');
+assert.equal(JSON.parse(minimize_target_json(good,'APPROVAL_REQUIRED','')).error,'TARGET_NOT_FOUND');
 for (const mutate of [
   t=>{t.fixtures[0].tool=''},
   t=>{t.fixtures[0].args_key='x'.repeat(4001)},

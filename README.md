@@ -65,6 +65,14 @@ node scripts/replay.mjs fixtures/approved.json --output report.json
 
 `--output` 只创建新文件，防止覆盖磁带或已有报告；参数错误返回退出码 `2`。`--help` 显示命令格式。
 
+指定缩减目标，保留同一条调用上的违规：
+
+```bash
+node scripts/replay.mjs fixtures/missing-approval.json --minimize --violation APPROVAL_REQUIRED --event send1
+```
+
+浏览器也可从“缩减目标”选择违规与调用。结果包含目标调用标识、删除的事件标识和复验报告；保留调用标识仍不等同于保留全部因果上下文。
+
 ## 从 MoonBit 源码构建
 
 按 [MoonBit 官方文档](https://docs.moonbitlang.com/en/latest/)安装工具链，然后运行：

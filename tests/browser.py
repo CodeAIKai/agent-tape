@@ -35,6 +35,18 @@ class BrowserTests(unittest.TestCase):
         self.page.click('#evaluate')
         expect(self.page.locator('#status')).to_have_text('INVALID_JSON_OR_SCHEMA')
         self.assertNotIn('APPROVAL_REQUIRED',self.page.locator('#events').inner_text())
+    def test_targeted_reduction_keeps_selected_event(self):
+        tape=json.loads((ROOT/'fixtures/missing-approval.json').read_text())
+        tape['events'].append({**tape['events'][-1], 'id':'send2'})
+        self.page.locator('#tape').fill(json.dumps(tape))
+        self.page.click('#evaluate')
+        self.page.select_option('#target',json.dumps({'code':'APPROVAL_REQUIRED','event':'send1'},separators=(',',':')))
+        self.page.click('#reduce')
+        expect(self.page.locator('#reduction')).to_contain_text('缩减 4 → 1 个事件')
+        self.page.locator('details summary').click()
+        report=json.loads(self.page.locator('#report').inner_text())
+        self.assertEqual(report['tape']['events'][0]['id'],'send1')
+        self.assertIn('send2',report['removed_event_ids'])
     def test_large_file_and_mobile_layout(self):
         self.page.set_input_files('#file',{'name':'large.json','mimeType':'application/json','buffer':b'x'*800001})
         expect(self.page.locator('#error')).to_contain_text('文件过大')

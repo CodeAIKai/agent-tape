@@ -6,6 +6,9 @@ pkgtype(kind: "executable")
 
 options(
   link: {
-    "js": { "exports": [ "evaluate_json", "minimize_json" ], "format": "esm" },
+    "js": {
+      "exports": [ "evaluate_json", "minimize_json", "minimize_target_json" ],
+      "format": "esm",
+    },
   },
 )

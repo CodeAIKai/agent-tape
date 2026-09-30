@@ -1,4 +1,4 @@
-import {evaluate_json, minimize_json} from './agent_tape.js';
+import {evaluate_json, minimize_target_json} from './agent_tape.js';
 const $=id=>document.getElementById(id);
 let last=null, revision=0;
 function node(tag,text,cls) {
@@ -6,7 +6,7 @@ function node(tag,text,cls) {
   if(cls)n.className=cls;return n;
 }
 function invalidate() {
-  last=null;$('download').disabled=true;$('report').textContent='';
+  last=null;$('target').replaceChildren(node('option','首个违规（自动）'));$('target').firstChild.value='';$('target').disabled=true;$('download').disabled=true;$('report').textContent='';
   $('error').textContent='';$('events').replaceChildren();$('reduction').replaceChildren();
   for(const id of ['calls','cost','network'])$(id).textContent='—';
   $('status').textContent='等待回放';$('status').className='status';
@@ -16,7 +16,10 @@ function render(r) {
   $('calls').textContent=r.calls??'—';$('cost').textContent=r.total_cost??'—';$('network').textContent=r.network_calls??'—';
   $('status').textContent=r.error?r.error:r.ok?'通过 · 可重复回放':'未通过 · 发现违规';
   $('status').className='status'+(r.ok?'':' bad');$('events').replaceChildren();
+  const targets=new Set();
   for(const v of r.violations||[]) {
+    const value=JSON.stringify({code:v.code,event:v.event_id});
+    if(!targets.has(value)){targets.add(value);const option=node('option',v.code+' / '+v.event_id);option.value=value;$('target').append(option);$('target').disabled=false;}
     const d=node('div','','event bad');d.append(node('b',v.code+' / '+v.event_id),node('p','步骤 '+v.step+' · '+v.message));$('events').append(d);
   }
   for(const x of r.replay||[]) {
@@ -53,9 +56,10 @@ $('file').onchange=async()=>{
 $('tape').oninput=()=>{revision++;invalidate();};
 $('bad').onclick=()=>load('missing-approval');$('good').onclick=()=>load('approved');$('drift').onclick=()=>load('drift');$('evaluate').onclick=run;
 $('reduce').onclick=()=>{
+  const target=$('target').value?JSON.parse($('target').value):{code:'',event:''};
   invalidate();
   try {
-    const r=JSON.parse(minimize_json($('tape').value));
+    const r=JSON.parse(minimize_target_json($('tape').value,target.code,target.event));
     if(r.error){render(r);return;}
     if(r.message){render(JSON.parse(evaluate_json($('tape').value)));$('reduction').append(node('p',r.message));return;}
     render(r.report);last=r;

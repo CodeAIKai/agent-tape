@@ -26,6 +26,11 @@ try {
   assert.equal(run([good,'--output',good]).status,2);
   assert.equal(run(['-'],'{').status,1);
   assert.equal(run([bad]).status,1);
+  const target=run([bad,'--minimize','--violation','APPROVAL_REQUIRED','--event','send1']);
+  assert.equal(target.status,0);assert.equal(JSON.parse(target.stdout).target_event_id,'send1');
+  assert.equal(run([bad,'--event','send1']).status,2);
+  assert.equal(run([bad,'--minimize','--event','send1']).status,2);
+  assert.equal(run([bad,'--minimize','--violation','UNKNOWN']).status,1);
   assert.equal(run([join(dir,'missing.json')]).status,2);
   console.log('CLI passed: stdin/BOM, output creation, overwrite protection, argument and exit-code contracts.');
 } finally {rmSync(dir,{recursive:true,force:true});}

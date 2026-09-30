@@ -1,4 +1,14 @@
 ///|
+fn contains_code(t : Tape, code : String) -> Bool {
+  contains_target(t, code, "")
+}
+
+///|
+fn reduce_tape(t : Tape, code : String) -> Tape {
+  reduce_target(t, code, "")
+}
+
+///|
 fn example(approved : Bool) -> Tape {
   let events : Array[Event] = []
   events.push({
@@ -182,5 +192,28 @@ test "stable JSON report and reducer fixed point" {
   assert_eq(
     ToJson::to_json(r).stringify(),
     ToJson::to_json(reduce_tape(r, "APPROVAL_REQUIRED")).stringify(),
+  )
+}
+
+///|
+test "targeted reduction preserves the requested event among matching failures" {
+  let t = example(false)
+  let events = t.events.copy()
+  events.push({ ..events[1], id: "send2", })
+  let reduced = reduce_target({ ..t, events, }, "APPROVAL_REQUIRED", "send1")
+  assert_eq(reduced.events.length(), 1)
+  assert_eq(reduced.events[0].id, "send1")
+}
+
+///|
+test "missing and invalid reduction targets have explicit errors" {
+  let raw = ToJson::to_json(example(false)).stringify()
+  assert_eq(
+    minimize_target_json(raw, "APPROVAL_REQUIRED", "unknown"),
+    "{\"ok\":false,\"error\":\"TARGET_NOT_FOUND\"}",
+  )
+  assert_eq(
+    minimize_target_json(raw, "", "send1"),
+    "{\"ok\":false,\"error\":\"INVALID_REDUCTION_TARGET\"}",
   )
 }
