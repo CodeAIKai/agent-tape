@@ -82,7 +82,7 @@ bash scripts/build.sh
 node scripts/benchmark.mjs
 ```
 
-构建脚本依次运行格式化、12 项核心测试、JS 后端编译和宿主集成测试，并更新网页使用的内核与示例。验证环境：`moon 0.1.20260920 (914d7da)`、`moonc v0.10.14+7d59c7ec9`、Node.js 20；[工具链记录](evidence/toolchain.txt)。
+构建脚本依次运行格式化、16 项核心测试、JS 后端编译和宿主集成测试，并更新网页使用的内核与示例。验证环境：`moon 0.1.20260920 (914d7da)`、`moonc v0.10.14+7d59c7ec9`、Node.js 20；[工具链记录](evidence/toolchain.txt)。
 
 性能脚本对同一合成磁带重复回放 1,000 次，输出本机耗时与缩减结果；它是单机微基准，不能据此推断相对其他框架的性能。
 
@@ -94,7 +94,7 @@ node scripts/benchmark.mjs
 moon run src/example --target js
 ```
 
-示例通过 `CodeAIKai/agent_tape/core` 导入内核并检查一份授权完整的磁带。该模块尚未发布到 Mooncakes；源代码与本地导入示例均随仓库提供。
+示例通过 `CodeAIKai/agent_tape/core` 导入内核并检查一份授权完整的磁带。相同示例也可用 `--target native` 运行，16 项核心用例在 JS 与 Native 后端均通过。该模块尚未发布到 Mooncakes；源代码与本地导入示例均随仓库提供。
 
 ## 批量回归检查
 
@@ -138,4 +138,11 @@ AgentTape 检查历史轨迹，不验证授权签名、不强制线上权限、�
 
 ## 浏览器交互验证
 
-安装 `requirements-browser.txt` 和 Playwright Chromium 后，运行 `python3 tests/browser.py`，验证本地导入、报告下载、无效输入、文件上限和移动布局。
+```bash
+python3 -m pip install -r requirements-browser.txt -r requirements-validation.txt
+python3 -m playwright install chromium
+python3 tests/browser.py
+python3 tests/schema_contract.py
+```
+
+浏览器检查覆盖本地导入、报告下载、指定事件缩减、无效输入、文件上限和移动布局；格式契约检查验证 JSON Schema 与内核的结构约束及明确的边界差异。

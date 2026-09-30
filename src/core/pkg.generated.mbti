@@ -1,0 +1,17 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "CodeAIKai/agent_tape/core"
+
+// Values
+pub fn evaluate_json(String) -> String
+
+pub fn minimize_json(String) -> String
+
+pub fn minimize_target_json(String, String, String) -> String
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

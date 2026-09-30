@@ -4,7 +4,7 @@
 
 `web/agent_tape.js` 包含 MoonBit 官方 core 的编译代码，随仓库保留其完整许可证及 NOTICE：`third_party/moonbit-core-LICENSE`、`third_party/moonbit-core-NOTICE`。core 主许可证为 Apache-2.0，NOTICE 记录上游来源与附加许可说明。
 
-Node CLI 和浏览器使用随附编译产物，无需额外安装 npm 包。Python 可选报告解读脚本依赖 HTTPX；Python 和 HTTPX 保留各自许可证。
+Node CLI 和浏览器使用随附编译产物，无需额外安装 npm 包。Python 可选报告解读脚本依赖 HTTPX。可选浏览器验证使用 Playwright，格式契约检查使用 jsonschema；这些包由 requirements 文件声明，未将其源码打包进仓库，各自保留上游许可证。
 
 文档导出使用 python-docx、python-pptx 和 LibreOffice；中文排版使用 Noto Sans CJK SC。视频来自本地程序实际录屏，中文旁白使用 Microsoft Edge 语音合成服务生成，未使用特定个人的声音样本。这些制作工具没有作为运行时依赖打包进仓库。
 

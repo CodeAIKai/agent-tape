@@ -4,3 +4,4 @@ submission/*.pdf binary
 submission/*.docx binary
 submission/*.pptx binary
 submission/*.mp4 binary
+src/**/pkg.generated.mbti linguist-generated=true

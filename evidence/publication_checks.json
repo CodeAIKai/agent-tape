@@ -8,7 +8,10 @@
     "complete_slide_text": true,
     "editorial_placeholders": 0,
     "production_labels": 0,
-    "privacy_scan": "passed"
+    "privacy_scan": "passed",
+    "application_sections": 8,
+    "application_use_cases": 3,
+    "application_rendered_pages": 1
   },
   "browser": {
     "desktop": "1280x800",
@@ -34,11 +37,20 @@
     "peak_db": -4.2
   },
   "repository": {
-    "public_files_scanned": 51,
+    "public_files_scanned": 71,
     "credentials": "absent",
     "private_registration_values": "absent",
     "local_readme_links": "passed",
     "participant_name_and_affiliation": "absent",
     "document_author_metadata": "project name only"
+  },
+  "verification": {
+    "moonbit_js_cases": 16,
+    "moonbit_native_cases": 16,
+    "browser_cases": 4,
+    "schema_contract_cases": 5,
+    "generated_tapes": 64,
+    "property_assertions": 832,
+    "status": "passed"
   }
 }

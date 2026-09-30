@@ -5,11 +5,15 @@
   "external_requests": [],
   "horizontal_overflow": false,
   "checks": [
+    "local tape import",
     "missing approval",
-    "failure reduction",
+    "targeted failure reduction",
     "JSON download",
+    "stale report invalidation",
     "approved trace",
-    "result drift"
+    "result drift",
+    "file size bound"
   ],
-  "status": "passed"
+  "status": "passed",
+  "test_cases": 4
 }

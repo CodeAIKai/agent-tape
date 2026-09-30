@@ -1,7 +1,34 @@
-Validation: AgentTape 0.1.0, 2026-09-30
-Command: bash scripts/build.sh
+Finished. moon: no work to do
+Total tests: 16, passed: 16, failed: 0.
+Finished. moon: no work to do
 
-Finished. moon: ran 4 tasks, now up to date
-Total tests: 12, passed: 12, failed: 0.
-Finished. moon: ran 2 tasks, now up to date
+> agent-tape@0.1.0 test
+> node tests/host.mjs && node tests/cli.mjs && node tests/suite.mjs && node tests/properties.mjs
+
 Host integration passed: valid/invalid tapes, minimality, 12 budget boundaries, deterministic output, limits.
+CLI passed: stdin/BOM, output creation, overwrite protection, argument and exit-code contracts.
+Suite runner passed: expected failures, regression mismatch, unique names and path containment.
+Metamorphic checks passed: 64 generated tapes, 832 assertions, fixed seed 0x5a17e001.
+test_edited_input_cannot_export_stale_report (__main__.BrowserTests.test_edited_input_cannot_export_stale_report) ... ok
+test_import_and_download (__main__.BrowserTests.test_import_and_download) ... ok
+test_large_file_and_mobile_layout (__main__.BrowserTests.test_large_file_and_mobile_layout) ... ok
+test_targeted_reduction_keeps_selected_event (__main__.BrowserTests.test_targeted_reduction_keeps_selected_event) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 4.234s
+
+OK
+test_cross_event_rules_are_owned_by_kernel (__main__.SchemaContractTests.test_cross_event_rules_are_owned_by_kernel) ... ok
+test_schema_and_shipped_tapes (__main__.SchemaContractTests.test_schema_and_shipped_tapes) ... ok
+test_structural_rejections_agree_with_kernel (__main__.SchemaContractTests.test_structural_rejections_agree_with_kernel) ... ok
+test_unicode_unit_boundary_is_documented (__main__.SchemaContractTests.test_unicode_unit_boundary_is_documented) ... ok
+test_unknown_metadata_is_permitted (__main__.SchemaContractTests.test_unknown_metadata_is_permitted) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 1.141s
+
+OK
+
+Native backend verification:
+Total tests: 16, passed: 16, failed: 0.
+Native package consumer: approved fixture, 3 calls, zero network.
