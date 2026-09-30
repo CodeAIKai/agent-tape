@@ -47,6 +47,33 @@ fn example(approved : Bool) -> Tape {
 }
 
 ///|
+test "malformed fixture fails before any replay" {
+  let t = example(true)
+  let r = evaluate({
+    ..t,
+    fixtures: [{ tool: "", args_key: "topic=demo", result: "found", }],
+  })
+  assert_true(!r.ok)
+  assert_eq(r.calls, 0)
+  assert_eq(r.replay.length(), 0)
+  assert_eq(r.violations[0].code, "SCHEMA")
+}
+
+///|
+test "duplicate policy names and empty approval target are rejected" {
+  let t = example(true)
+  assert_true(
+    contains_code(
+      { ..t, policy: { ..t.policy, allowed_tools: ["send", "send"], }, },
+      "SCHEMA",
+    ),
+  )
+  let events = t.events.copy()
+  events[1] = { ..events[1], target: "", }
+  assert_true(contains_code({ ..t, events, }, "SCHEMA"))
+}
+
+///|
 test "approved trace replays without any network" {
   let r = evaluate(example(true))
   assert_true(r.ok)

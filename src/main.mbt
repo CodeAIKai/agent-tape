@@ -84,6 +84,21 @@ fn violation(
 }
 
 ///|
+fn valid_tool_names(items : Array[String]) -> Bool {
+  if items.length() > 300 {
+    return false
+  }
+  let seen : Array[String] = []
+  for item in items {
+    if item.length() == 0 || item.length() > 120 || has(seen, item) {
+      return false
+    }
+    seen.push(item)
+  }
+  true
+}
+
+///|
 /// Validate shape and bounds before replay. No partial report is trusted.
 fn shape_errors(t : Tape) -> Array[Violation] {
   let errors : Array[Violation] = []
@@ -95,6 +110,15 @@ fn shape_errors(t : Tape) -> Array[Violation] {
   if t.events.length() > 300 || t.fixtures.length() > 300 {
     errors.push(
       violation(-1, "schema", "LIMIT", "Maximum 300 events and fixtures"),
+    )
+    return errors
+  }
+  if !valid_tool_names(t.policy.allowed_tools) ||
+    !valid_tool_names(t.policy.side_effect_tools) {
+    errors.push(
+      violation(
+        -1, "policy", "SCHEMA", "Tool lists require unique nonempty names of at most 120 characters, with at most 300 entries",
+      ),
     )
   }
   if t.policy.max_total_cost < 0 ||
@@ -116,6 +140,7 @@ fn shape_errors(t : Tape) -> Array[Violation] {
     }
     if e.cost < 0 ||
       e.cost > 1000000 ||
+      e.tool.length() == 0 ||
       e.tool.length() > 120 ||
       e.args_key.length() > 4000 ||
       e.result.length() > 8000 {
@@ -126,8 +151,28 @@ fn shape_errors(t : Tape) -> Array[Violation] {
         violation(i, e.id, "SCHEMA", "Approval events cannot incur tool cost"),
       )
     }
+    if (
+        e.kind == "approve" &&
+        (e.target.length() == 0 || e.target.length() > 120)
+      ) ||
+      (e.kind == "call" && e.target != "") {
+      errors.push(
+        violation(
+          i,
+          e.id,
+          "SCHEMA",
+          "Approvals require a target call ID; call events require an empty target",
+        ),
+      )
+    }
   }
   for i, f in t.fixtures {
+    if f.tool.length() == 0 ||
+      f.tool.length() > 120 ||
+      f.args_key.length() > 4000 ||
+      f.result.length() > 8000 {
+      errors.push(violation(-1, "fixture", "SCHEMA", "Invalid fixture bounds"))
+    }
     for j = 0; j < i; j = j + 1 {
       let other = t.fixtures[j]
       if f.tool == other.tool && f.args_key == other.args_key {
