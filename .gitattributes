@@ -1,0 +1,6 @@
+web/agent_tape.js linguist-generated=true
+web/fixtures/*.json linguist-generated=true
+submission/*.pdf binary
+submission/*.docx binary
+submission/*.pptx binary
+submission/*.mp4 binary

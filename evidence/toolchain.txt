@@ -1,0 +1,4 @@
+moon 0.1.20260920 (914d7da 2026-09-20)
+moonc v0.10.14+7d59c7ec9 (2026-09-18)
+Node.js v20.20.2
+Target: JavaScript / ES module

@@ -1,0 +1,19 @@
+{
+  "name": "agent-tape",
+  "version": "0.1.0",
+  "description": "MoonBit-native deterministic tool-call replay, policy checks, and failure reduction",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CodeAIKai/agent-tape.git"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node tests/host.mjs",
+    "demo": "node scripts/replay.mjs fixtures/missing-approval.json --minimize"
+  }
+}

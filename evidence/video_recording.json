@@ -1,0 +1,70 @@
+{
+  "capture": "actual Chromium screencast, edited by scene",
+  "size": [
+    1280,
+    800
+  ],
+  "duration_seconds": 112.0,
+  "audio": "Chinese narration, AAC 48kHz stereo",
+  "captions": "Chinese burned-in titles and summaries",
+  "console_errors": [],
+  "production_labels_in_visible_text": false,
+  "scenes": [
+    {
+      "scene": 1,
+      "action": "intro",
+      "seconds": 14.0,
+      "visible_text_check": "passed",
+      "actual_frames": 2
+    },
+    {
+      "scene": 2,
+      "action": "tape",
+      "seconds": 15.03,
+      "visible_text_check": "passed",
+      "actual_frames": 2
+    },
+    {
+      "scene": 3,
+      "action": "evaluate",
+      "seconds": 14.0,
+      "visible_text_check": "passed",
+      "actual_frames": 3
+    },
+    {
+      "scene": 4,
+      "action": "reduce",
+      "seconds": 13.88,
+      "visible_text_check": "passed",
+      "actual_frames": 4
+    },
+    {
+      "scene": 5,
+      "action": "boundary",
+      "seconds": 14.69,
+      "visible_text_check": "passed",
+      "actual_frames": 2
+    },
+    {
+      "scene": 6,
+      "action": "good",
+      "seconds": 12.49,
+      "visible_text_check": "passed",
+      "actual_frames": 3
+    },
+    {
+      "scene": 7,
+      "action": "drift",
+      "seconds": 13.06,
+      "visible_text_check": "passed",
+      "actual_frames": 3
+    },
+    {
+      "scene": 8,
+      "action": "end",
+      "seconds": 14.79,
+      "visible_text_check": "passed",
+      "actual_frames": 1
+    }
+  ]
+}

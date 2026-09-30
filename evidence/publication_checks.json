@@ -1,0 +1,44 @@
+{
+  "documents": {
+    "pdf_pages": {
+      "pitch-deck.pdf": 10,
+      "project-summary.pdf": 1,
+      "technical-report.pdf": 2
+    },
+    "complete_slide_text": true,
+    "editorial_placeholders": 0,
+    "production_labels": 0,
+    "privacy_scan": "passed"
+  },
+  "browser": {
+    "desktop": "1280x800",
+    "mobile": "390x844",
+    "console_errors": [],
+    "external_requests": [],
+    "horizontal_overflow": false,
+    "checks": [
+      "missing approval",
+      "failure reduction",
+      "JSON download",
+      "approved trace",
+      "result drift"
+    ],
+    "status": "passed"
+  },
+  "video": {
+    "seconds": 112.0,
+    "resolution": "1280x800",
+    "decode": "passed",
+    "audio": "AAC 48kHz stereo",
+    "mean_db": -21.3,
+    "peak_db": -4.2
+  },
+  "repository": {
+    "public_files_scanned": 51,
+    "credentials": "absent",
+    "private_registration_values": "absent",
+    "local_readme_links": "passed",
+    "participant_name_and_affiliation": "absent",
+    "document_author_metadata": "project name only"
+  }
+}

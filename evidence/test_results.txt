@@ -1,0 +1,7 @@
+Validation: AgentTape 0.1.0, 2026-09-30
+Command: bash scripts/build.sh
+
+Finished. moon: ran 4 tasks, now up to date
+Total tests: 12, passed: 12, failed: 0.
+Finished. moon: ran 2 tasks, now up to date
+Host integration passed: valid/invalid tapes, minimality, 12 budget boundaries, deterministic output, limits.

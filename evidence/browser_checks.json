@@ -1,0 +1,15 @@
+{
+  "desktop": "1280x800",
+  "mobile": "390x844",
+  "console_errors": [],
+  "external_requests": [],
+  "horizontal_overflow": false,
+  "checks": [
+    "missing approval",
+    "failure reduction",
+    "JSON download",
+    "approved trace",
+    "result drift"
+  ],
+  "status": "passed"
+}

@@ -1,0 +1,95 @@
+# AgentTape
+
+**Replay with evidence.** A MoonBit-native toolkit for deterministic tool-call replay, policy checks, and failure reduction.
+
+把工具调用失败保存成可复现的证据。AgentTape 使用一个 MoonBit 内核，在命令行和浏览器中检查调用轨迹、离线回放预置响应，并把失败轨迹缩减为保留同类违规的片段。
+
+[2026 MoonBit 9 月黑客松](https://moonbitlang.github.io/Hackathon2026/) · Apache-2.0
+
+## 参赛材料
+
+| 材料 | 链接 |
+| --- | --- |
+| 一页项目说明 | [PDF](submission/project-summary.pdf) · [正文](submission/project-summary.md) |
+| 技术与验收说明 | [PDF](submission/technical-report.pdf) · [正文](submission/technical-report.md) |
+| 路演演示文稿 | [PDF](submission/pitch-deck.pdf) · [PPTX](submission/pitch-deck.pptx) |
+| 实际操作视频 | [观看或下载 MP4，1 分 52 秒，中文配音与字幕](https://github.com/CodeAIKai/agent-tape/raw/refs/heads/main/submission/demo.mp4) |
+| 自动化验证 | [核心与宿主测试](evidence/test_results.txt) · [浏览器检查](evidence/browser_checks.json) |
+
+[![AgentTape 浏览器演示：回放与缩减缺少授权的调用轨迹](docs/assets/demo.png)](https://github.com/CodeAIKai/agent-tape/raw/refs/heads/main/submission/demo.mp4)
+
+## 一分钟运行
+
+需要 Git 和 Node.js 20 或更新版本。仓库已附带 MoonBit 编译产物，无需安装 npm 依赖、配置密钥或训练模型。
+
+```bash
+git clone https://github.com/CodeAIKai/agent-tape.git
+cd agent-tape
+npm test
+node scripts/replay.mjs fixtures/approved.json
+node scripts/replay.mjs fixtures/missing-approval.json --minimize
+```
+
+第一份磁带检查通过。第二条命令把缺少授权的轨迹从 3 个事件缩减到 1 个，保留 `APPROVAL_REQUIRED`。
+
+浏览器演示另需 Python 3：
+
+```bash
+python3 -m http.server 8013 --bind 127.0.0.1 --directory web
+```
+
+打开 **http://127.0.0.1:8013**，依次点击“缺少授权”“缩减失败片段”“授权完整”和“结果漂移”，即可复现视频中的流程。“导出报告”下载当前检查或缩减结果。
+
+## 核心能力
+
+- **规则检查：** 工具白名单、累计记录成本、调用次数，以及与调用 ID、工具和参数绑定的事前授权。
+- **离线回放：** 按工具名与参数键精确匹配 fixture；发现缺失响应或结果漂移时给出错误。内核不访问网络，也不执行真实工具。
+- **失败缩减：** 反复删除单条事件并复验，输出保持首个违规代码的 1-minimal 子序列。
+- **共享实现：** Node CLI 与浏览器调用同一个 MoonBit 编译内核，规则只实现一次。
+
+| 示例 | 预期结果 |
+| --- | --- |
+| `fixtures/approved.json` | 授权有效，检查通过 |
+| `fixtures/missing-approval.json` | `APPROVAL_REQUIRED`；可缩减为 1 个事件 |
+| `fixtures/drift.json` | `RESULT_DRIFT`，记录结果与 fixture 不一致 |
+
+CLI 检查通过或成功完成缩减时退出码为 `0`；检查发现违规或内核拒绝输入时为 `1`；缺少文件参数或文件读取失败时为 `2`。例如 `node scripts/replay.mjs fixtures/drift.json` 的预期退出码是 `1`，可用于回归检查。
+
+## 从 MoonBit 源码构建
+
+按 [MoonBit 官方文档](https://docs.moonbitlang.com/en/latest/)安装工具链，然后运行：
+
+```bash
+bash scripts/build.sh
+node scripts/benchmark.mjs
+```
+
+构建脚本依次运行格式化、12 项核心测试、JS 后端编译和宿主集成测试，并更新网页使用的内核与示例。验证环境：`moon 0.1.20260920 (914d7da)`、`moonc v0.10.14+7d59c7ec9`、Node.js 20；[工具链记录](evidence/toolchain.txt)。
+
+性能脚本对同一合成磁带重复回放 1,000 次，输出本机耗时与缩减结果；它是单机微基准，不能据此推断相对其他框架的性能。
+
+## 代码导航
+
+| 路径 | 内容 |
+| --- | --- |
+| `src/main.mbt` | 类型与 schema 校验、策略检查、fixture 回放、失败缩减 |
+| `src/main_wbtest.mbt` | MoonBit 核心行为测试 |
+| `web/agent_tape.js` | 从 MoonBit 生成的 ES module |
+| `web/app.js`、`web/index.html` | 浏览器交互与展示 |
+| `scripts/replay.mjs`、`tests/host.mjs` | 命令行入口与宿主集成测试 |
+| `fixtures/` | 三份可直接运行的合成磁带 |
+| `submission/` | 项目说明、技术说明、路演文件和配音视频 |
+
+## 适用范围
+
+输入协议版本为 `1`，上限为 300 个事件、300 个 fixture 和 200,000 字符；缩减最多接受 60 个事件。记录成本使用非负整数，参数键使用精确字符串匹配，由调用方负责规范化。
+
+AgentTape 检查历史轨迹，不验证授权签名、不强制线上权限、不自动脱敏，也不执行完整智能体。缩减结果保证无法继续单条删除而保留目标违规代码，不保证全局最短或相同根因。示例均为合成数据。
+
+## 可选报告解读
+
+`scripts/explain.py` 可通过 DeepSeek API 解释已有报告；该功能独立于回放、缩减和网页演示，不改变 MoonBit 的判定。安装 `requirements-api.txt` 并在服务端环境中配置 `DEEPSEEK_API_KEY` 后，可运行 `python3 scripts/explain.py report.json`。输入应先脱敏；密钥不进入网页或仓库。
+
+## 许可与来源
+
+原创实现采用 [Apache-2.0](LICENSE)。[参考资料](docs/参考资料.md)、[开发与材料来源](PROVENANCE.md)及[第三方说明](THIRD_PARTY.md)记录实现依据与工具使用。编译产物包含的 MoonBit core 代码，其完整许可证和 NOTICE 保存在 `third_party/`。

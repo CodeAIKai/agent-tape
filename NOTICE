@@ -1,0 +1,6 @@
+AgentTape
+Copyright 2026 CodeAIKai
+
+Original implementation licensed under Apache-2.0.
+The compiled JavaScript includes MoonBit core code; see THIRD_PARTY.md
+and the license and notice files in third_party/.
