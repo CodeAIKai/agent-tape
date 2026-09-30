@@ -86,6 +86,12 @@ node scripts/benchmark.mjs
 
 性能脚本对同一合成磁带重复回放 1,000 次，输出本机耗时与缩减结果；它是单机微基准，不能据此推断相对其他框架的性能。
 
+## 批量回归检查
+
+`npm run check` 一次核对三份示例的预期结果，包含应当发现违规的负向用例。自定义清单使用 `fixtures/regression-suite.json` 的格式：每项指定相对文件名、预期通过状态和违规代码集合。
+
+运行 `node scripts/check-suite.mjs fixtures/regression-suite.json`，全部符合预期返回 `0`，行为回归返回 `1`，清单或文件读取错误返回 `2`。清单只能读取其所在目录内的磁带，越界路径和指向目录外的符号链接会被拒绝。
+
 ## 代码导航
 
 | 路径 | 内容 |

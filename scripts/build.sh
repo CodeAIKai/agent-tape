@@ -14,5 +14,7 @@ moon test --target js
 moon build --target js --release
 cp _build/js/release/build/agent_tape.js web/agent_tape.js
 mkdir -p web/fixtures
-cp fixtures/*.json web/fixtures/
-node tests/host.mjs
+for fixture in approved missing-approval drift; do
+  cp "fixtures/$fixture.json" web/fixtures/
+done
+npm test

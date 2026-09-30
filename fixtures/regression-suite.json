@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "name": "approved trace",
+      "file": "approved.json",
+      "expect": {
+        "ok": true,
+        "codes": []
+      }
+    },
+    {
+      "name": "missing approval is detected",
+      "file": "missing-approval.json",
+      "expect": {
+        "ok": false,
+        "codes": [
+          "APPROVAL_REQUIRED"
+        ]
+      }
+    },
+    {
+      "name": "fixture result drift is detected",
+      "file": "drift.json",
+      "expect": {
+        "ok": false,
+        "codes": [
+          "RESULT_DRIFT"
+        ]
+      }
+    }
+  ]
+}
