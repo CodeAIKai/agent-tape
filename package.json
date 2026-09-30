@@ -13,7 +13,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "test": "node tests/host.mjs && node tests/cli.mjs && node tests/suite.mjs",
+    "test": "node tests/host.mjs && node tests/cli.mjs && node tests/suite.mjs && node tests/properties.mjs",
     "demo": "node scripts/replay.mjs fixtures/missing-approval.json --minimize",
     "check": "node scripts/check-suite.mjs fixtures/regression-suite.json"
   }

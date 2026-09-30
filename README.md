@@ -132,6 +132,10 @@ AgentTape 检查历史轨迹，不验证授权签名、不强制线上权限、�
 
 原创实现采用 [Apache-2.0](LICENSE)。[参考资料](docs/参考资料.md)、[开发与材料来源](PROVENANCE.md)及[第三方说明](THIRD_PARTY.md)记录实现依据与工具使用。编译产物包含的 MoonBit core 代码，其完整许可证和 NOTICE 保存在 `third_party/`。
 
+## 可重复的性质检查
+
+`npm test` 包含固定种子的 64 组生成磁带、832 次断言，验证 fixture 重排和无关响应不改变回放结果、预算收紧与放宽、删除授权后的定位，以及指定事件缩减的子序列、固定点和单条删除最小性。这些检查用于发现跨输入组合的回归，不构成对任意输入的形式化证明。
+
 ## 浏览器交互验证
 
 安装 `requirements-browser.txt` 和 Playwright Chromium 后，运行 `python3 tests/browser.py`，验证本地导入、报告下载、无效输入、文件上限和移动布局。

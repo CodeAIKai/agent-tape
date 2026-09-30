@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "seed": "0x5a17e001",
+  "generated_tapes": 64,
+  "assertions": 832,
+  "properties": [
+    "deterministic replay",
+    "fixture permutation invariance",
+    "unused fixture invariance",
+    "budget monotonicity",
+    "approval removal localization",
+    "pinned reduction subsequence",
+    "reducer fixed point",
+    "single-deletion minimality"
+  ]
+}
